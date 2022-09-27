@@ -1,0 +1,105 @@
+.freeboard {
+	padding-top: 150px;
+	width: 65%;
+	margin: 0 auto;
+    max-width: 1180px;
+    position: relative;
+
+	.board {
+		border-radius: 12px;
+		background-color: white;
+		width: 100%;
+		height: auto;
+		min-height: 800px;
+		max-height: 1200px;
+		margin-bottom: 50px;
+
+		.board-title {
+			display: flex;
+			width: 96%;
+			margin-left: 1%;
+			margin-top: 10px;
+			font-size: 24px;
+			font-weight: 700;
+			padding: 28px 0 16px 20px;
+			border-bottom: 3px solid #cecece;
+
+			.board-icon {
+				width: 42px;
+				margin: -4px 8px 0 0;
+			}
+		}
+
+		.index {
+			border-top: 1px solid #ddd;
+			border-bottom: 1px solid #ddd;
+			background: #f7f8f9;
+			height: 42px;
+			width: 96%;
+			margin-left: 1%;
+			padding-left: 20px;
+            display: flex;
+
+			.index-title {
+				display: flex;
+				width: 5%;
+				font-size: 16px;
+				font-weight: 600;
+				color: #111;
+                justify-content: center;
+                padding-top: 8px;
+			}
+		}
+
+		.contents-info {
+			width: 96%;
+			margin-left: 1%;
+			padding-left: 20px;
+			border-bottom: 1px solid #ddd;
+			height: 42px;
+			display: flex;
+            word-break: break-all;
+            white-space: nowrap;
+			font-size: 15px;
+
+			.number {
+				display: flex;
+				align-items: center;
+				width: 5%;
+				justify-content: center;
+			}
+			.title {
+				cursor: pointer;
+				align-items: center;
+				justify-content: center;
+				display: block;
+                overflow: hidden;
+                text-overflow: ellipsis;
+				width: 64%;
+				margin-left: 12px;
+				padding-top: 12px;
+			}
+			.writer {
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				width: 14%;
+				margin-left: 12px;
+			}
+			.date {
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				width: 7%;
+				margin-left: 12px;
+			}
+			.views {
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				width: 10%;
+				margin-left: 12px;
+			}
+		}
+	}
+}

@@ -1,0 +1,59 @@
+.main-page {
+    position: relative;
+    padding-top: 150px;
+    width: 65%;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    place-items: center;
+    max-width: 1180px;
+
+    .board {
+        width: 95%;
+        height: 410px;
+        overflow: hidden;
+        margin-bottom: 50px;
+        border-radius: 12px;
+        background-color: white;
+
+        .title {
+            cursor: pointer;
+            width: 90%;
+            margin-left: 4%;
+            margin-top: 25px;
+            font-size: 20px;
+            font-weight: 700;
+            padding-bottom: 10px;
+            border-bottom: 2.5px solid #cecece;
+        }
+
+        .board-contents {
+            display: flex;
+            margin: 12px 0 16px 22px;
+            width: 100%;
+            position: relative;
+            word-break: break-all;
+            white-space: nowrap;
+        
+            .board-writer {
+                display: flex;
+                width: 10%;
+            }
+
+            .board-title {
+                cursor: pointer;
+                width: 60%;
+                margin-left: 3%;
+                display: block;
+                overflow: hidden;
+                text-overflow: ellipsis;
+            }
+
+            .board-date {
+                display: flex;
+                margin-left: 2%;
+                width: 20%;
+            }
+        }   
+    }
+}
