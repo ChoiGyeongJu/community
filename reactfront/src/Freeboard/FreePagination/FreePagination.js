@@ -2,6 +2,7 @@
 import React, { useEffect, useState } from 'react';
 import './FreePagination.scss';
 import NextArrow from '../../images/NextArrow.png';
+import { ScrollTop } from '../../Hooks/Hooks';
 
 const FreePagination = props => {
 	const { buttonPagination, Pagination, Page, setPage } = props;
@@ -24,13 +25,6 @@ const FreePagination = props => {
 
 	const handlePage = page => {
 		setPage(page);
-	};
-
-	const ScrollTop = () => {
-		window.scrollTo({
-			top: 0,
-			behavior: 'smooth',
-		});
 	};
 
 	return (

@@ -5,6 +5,7 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import FreePagination from './FreePagination/FreePagination';
 import boardImg from '../images/boardImg.png';
+import { ScrollTop } from '../Hooks/Hooks';
 
 const Freeboard = () => {
 	const navigate = useNavigate();
@@ -48,7 +49,16 @@ const Freeboard = () => {
 			<div className="board">
 				<div className="board-title">
 					<img className="board-icon" src={boardImg} />
-					자유게시판
+					<div className="category">자유게시판</div>
+					<div
+						className="write-button"
+						onClick={() => {
+							ScrollTop();
+							navigate('/upload');
+						}}
+					>
+						글쓰기
+					</div>
 				</div>
 				<div className="index">
 					<div className="index-title">번호</div>
@@ -74,6 +84,7 @@ const Freeboard = () => {
 								<div
 									className="title"
 									onClick={() => {
+										ScrollTop();
 										navigate(`/Detailpage/${com.id}`);
 									}}
 								>

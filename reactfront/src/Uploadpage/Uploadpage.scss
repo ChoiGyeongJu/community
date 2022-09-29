@@ -1,0 +1,78 @@
+.upload {
+	padding-top: 150px;
+	width: 65%;
+	margin: 0 auto;
+	max-width: 1180px;
+	position: relative;
+
+	.container {
+		border-radius: 12px;
+		background-color: white;
+		width: 100%;
+		height: auto;
+		min-height: 900px;
+		max-height: 1200px;
+		margin-bottom: 50px;
+
+		.board-title {
+			display: flex;
+			width: 96%;
+			margin: 10px 0 30px 1%;
+			font-size: 24px;
+			font-weight: 700;
+			padding: 28px 0 16px 20px;
+			border-bottom: 3px solid black;
+		}
+
+		.content-container {
+			width: 96%;
+			margin: 10px 0 30px 2%;
+			height: auto;
+			min-height: 900px;
+			max-height: 1200px;
+
+			.select-box {
+				width: 30%;
+				font-size: 16px;
+				cursor: pointer;
+				margin-bottom: 20px;
+			}
+
+			input {
+				width: 98.5%;
+				height: 42px;
+				margin-bottom: 25px;
+				padding-left: 8px;
+				font-size: 15px;
+			}
+		}
+
+		.button {
+			display: flex;
+			justify-content: center;
+
+			.cancel-button {
+				margin: -10px 10px 45px 10px;
+				cursor: pointer;
+				width: 7%;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+				height: 30px;
+				border: 1px solid #ddd;
+			}
+			.upload-button {
+				margin: -10px 10px 45px 10px;
+				cursor: pointer;
+				width: 7%;
+				height: 30px;
+				border: 1px solid #ddd;
+				background-color: #034bda;
+				color: #fff;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+			}
+		}
+	}
+}
