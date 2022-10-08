@@ -31,11 +31,12 @@ class CategoryView(APIView):
             return JsonResponse({'message': 'Category Not Found'}, status=401)
 
 
-class BoardListView(APIView):
-    # 특정 게시판의 게시글을 반환하는 api
+class BoardView(APIView):
+    # 특정 게시글을 반환하는 api
     def get(self, request, id):
         try:
-            board_list = [{
+            board = Board.objects.get(id=id)
+            board_info = {
                 'title'      : board.title,
                 'user_id'    : board.user_id,
                 'nickname'   : board.user.nickname,
@@ -43,10 +44,58 @@ class BoardListView(APIView):
                 'views'      : board.views,
                 'date'       : str(board.created_at)[:10],
                 'time'       : str(board.created_at)[11:16],
-            }for board in Board.objects.filter(category_id=id)]
+            }
+
+            return JsonResponse({'message': 'success', 'board_info': board_info}, status=200)
+
+        except Board.DoesNotExist:
+            return JsonResponse({'message': 'Board Not Found'}, statue=401)
+
+
+class BoardListView(APIView):
+    # 특정 게시판의 게시글들을 반환하는 api
+    def get(self, request, id):
+        try:
+            boards = Board.objects.filter(category_id=id)
+            board_list = [{
+                'id'         : len(boards) - i,
+                'title'      : board.title,
+                'user_id'    : board.user_id,
+                'nickname'   : board.user.nickname,
+                'content'    : board.content,
+                'views'      : board.views,
+                'date'       : str(board.created_at)[:10],
+                'time'       : str(board.created_at)[11:16],
+            }for i, board in enumerate(boards)]
 
             return JsonResponse({'message': 'success', 'board_list': board_list}, status=200)
 
+        except Board.DoesNotExist:
+            return JsonResponse({'message': 'Board Not Found'}, statue=401)
+
+
+class BoardByCategory(APIView):
+    # 게시판 기준으로 게시글 리스트를 반환하는 api
+    def get(self, request):
+        try:
+            categories = Category.objects.filter(is_valid=True)
+
+            board_info = []
+            for category in categories:
+                board_list = [{
+                    'id'         : board.id,
+                    'title'      : board.title,
+                    'user_id'    : board.user_id,
+                    'nickname'   : board.user.nickname,
+                    'content'    : board.content,
+                    'views'      : board.views,
+                    'date'       : str(board.created_at)[:10],
+                    'time'       : str(board.created_at)[11:16],
+                }for board in Board.objects.filter(category_id=category.id)]
+
+                board_info.append(board_list)
+
+            return JsonResponse({'message': 'success', 'board_info': board_info}, status=200)
 
         except Board.DoesNotExist:
             return JsonResponse({'message': 'Board Not Found'}, statue=401)
