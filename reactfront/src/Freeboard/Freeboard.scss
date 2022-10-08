@@ -13,6 +13,7 @@
 		min-height: 800px;
 		max-height: 1200px;
 		margin-bottom: 50px;
+		padding-bottom: 50px;
 
 		.board-title {
 			display: flex;
@@ -91,7 +92,7 @@
 				display: block;
                 overflow: hidden;
                 text-overflow: ellipsis;
-				width: 64%;
+				width: 63%;
 				margin-left: 12px;
 				padding-top: 12px;
 			}

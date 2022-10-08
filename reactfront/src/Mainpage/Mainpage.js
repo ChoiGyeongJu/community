@@ -7,28 +7,23 @@ import url from '../FetchURL/URL.js';
 
 const Mainpage = () => {
 	const navigate = useNavigate();
-	const [boardcontents, setBoardcontents] = useState([
-		{
-			id: '1',
-			writer: '홍길동1',
-			title:
-				'테스트 게시판 제목임테스트 트 게시판 제목임테스트 게시판 제목임테스트 게시판 제목임테스게시판 제목임테스트 게시판 제목임',
-			date: '2022-09-26',
-		},
-		{ id: '2', writer: '홍길동2', title: '테스트 게시판 제목임', date: '2022-09-26' },
-		{ id: '3', writer: '홍길동3', title: '테스트 게시판 제목임', date: '2022-09-26' },
-		{ id: '4', writer: '홍길동4', title: '테스트 게시판 제목임', date: '2022-09-26' },
-		{ id: '5', writer: '홍길동5', title: '테스트 게시판 제목임', date: '2022-09-26' },
-		{ id: '6', writer: '홍길동6', title: '테스트 게시판 제목임', date: '2022-09-26' },
-		{ id: '7', writer: '홍길동7', title: '테스트 게시판 제목임', date: '2022-09-26' },
-	]);
-
+	const [boardcontents, setBoardcontents] = useState([]);
 	const [category, setCategory] = useState([]);
+
 	useEffect(() => {
 		fetch(`${url}/board/categories`)
 			.then(res => res.json())
 			.then(data => {
-				setCategory(data.categories_info);
+				if (data.message === 'success') {
+					setCategory(data.categories_info);
+				}
+			});
+		fetch(`${url}/board/board-all`)
+			.then(res => res.json())
+			.then(data => {
+				if (data.message === 'success') {
+					setBoardcontents(data.board_info);
+				}
 			});
 	}, []);
 
@@ -38,24 +33,32 @@ const Mainpage = () => {
 				category.map((item, idx) => {
 					return (
 						<div className="board" key={idx}>
-							<div className="title">{item.name}</div>
-							{boardcontents.map((com, id) => {
-								return (
-									<div className="board-contents" key={id}>
-										<div className="board-writer">{com.writer}</div>
-										<div
-											className="board-title"
-											onClick={() => {
-												ScrollTop();
-												navigate(`/Detailpage/${com.id}`);
-											}}
-										>
-											{com.title}
+							<div
+								className="title"
+								onClick={() => {
+									navigate(`/Board${idx + 1}`);
+								}}
+							>
+								{item.name}
+							</div>
+							{boardcontents[idx] &&
+								boardcontents[idx].map((com, id) => {
+									return (
+										<div className="board-contents" key={id}>
+											<div className="board-writer">{com.nickname}</div>
+											<div
+												className="board-title"
+												onClick={() => {
+													ScrollTop();
+													navigate(`/Detailpage/${com.id}`);
+												}}
+											>
+												{com.title}
+											</div>
+											<div className="board-date">{com.date}</div>
 										</div>
-										<div className="board-date">{com.date}</div>
-									</div>
-								);
-							})}
+									);
+								})}
 						</div>
 					);
 				})}

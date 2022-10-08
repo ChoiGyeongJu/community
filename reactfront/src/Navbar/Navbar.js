@@ -11,16 +11,6 @@ import url from '../FetchURL/URL';
 const Navbar = () => {
 	const navigate = useNavigate();
 
-	// const [category, setCategory] = useState([]);
-	// useEffect(() => {
-	// 	fetch(`${url}/board/categories`)
-	// 		.then(res => res.json())
-	// 		.then(data => {
-	// 			console.log(data);
-	// 			setCategory(data.categories_info);
-	// 		});
-	// }, []);
-
 	return (
 		<div className="navbar">
 			<div className="nav-contents">
@@ -37,20 +27,44 @@ const Navbar = () => {
 						className="menu"
 						onClick={() => {
 							ScrollTop();
-							navigate('/freeboard');
+							navigate('/Board1');
 						}}
 					>
 						자유게시판
 					</div>
 				</div>
 				<div className="menu-wrap">
-					<div className="menu">스포츠</div>
+					<div
+						className="menu"
+						onClick={() => {
+							ScrollTop();
+							navigate('/Board2');
+						}}
+					>
+						스포츠
+					</div>
 				</div>
 				<div className="menu-wrap">
-					<div className="menu">주식/코인</div>
+					<div
+						className="menu"
+						onClick={() => {
+							ScrollTop();
+							navigate('/Board3');
+						}}
+					>
+						주식/코인
+					</div>
 				</div>
 				<div className="menu-wrap">
-					<div className="menu">게임</div>
+					<div
+						className="menu"
+						onClick={() => {
+							ScrollTop();
+							navigate('/Board4');
+						}}
+					>
+						게임
+					</div>
 				</div>
 				<img className="search-icon" src={search} />
 				<img className="login-icon" src={loginbtn} />

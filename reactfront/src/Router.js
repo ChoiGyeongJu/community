@@ -15,7 +15,7 @@ function Router() {
 			<Navbar />
 			<Routes>
 				<Route path="/" element={<Mainpage />} />
-				<Route path="/freeboard" element={<Freeboard />} />
+				<Route path="/Board1" element={<Freeboard />} />
 				<Route path="/Detailpage/:boardId" element={<Detailpage />} />
 				<Route path="/upload" element={<Uploadpage />} />
 			</Routes>

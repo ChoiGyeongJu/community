@@ -2,16 +2,21 @@
 import './Detailpage.scss';
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router';
+import url from '../FetchURL/URL.js';
 
 const Detailpage = () => {
 	const params = useParams();
-	const [Detailcontents, setDetailcontents] = useState({
-		writer: '홍길동1',
-		title: '테스트 게시판 제목',
-		date: '2022-09-26',
-		views: 123,
-		reviews: 1,
-	});
+	const [Detailcontents, setDetailcontents] = useState({});
+
+	useEffect(() => {
+		fetch(`${url}/board/board/${params.boardId}`)
+			.then(res => res.json())
+			.then(data => {
+				if (data.message === 'success') {
+					setDetailcontents(data.board_info);
+				}
+			});
+	}, []);
 
 	return (
 		<div className="detail-page">
@@ -21,7 +26,7 @@ const Detailpage = () => {
 				<div className="contents-info">
 					<div className="writer">
 						<div style={{ fontWeight: '600', marginRight: '8px' }}>작성자</div>
-						{Detailcontents.writer}
+						{Detailcontents.nickname}
 					</div>
 					<div className="writer" style={{ width: '15%' }}>
 						<div style={{ fontWeight: '600', marginRight: '8px' }}>등록일</div>
@@ -36,6 +41,7 @@ const Detailpage = () => {
 						{Detailcontents.reviews}
 					</div>
 				</div>
+				<div className="contents-box">{Detailcontents.content}</div>
 			</div>
 		</div>
 	);

@@ -11,8 +11,8 @@
 		background-color: white;
 		width: 100%;
 		height: auto;
-		min-height: 800px;
-		max-height: 1200px;
+		min-height: 900px;
+		// max-height: 1200px;
 		margin-bottom: 50px;
 
         .board-title {
@@ -54,6 +54,13 @@
                 font-size: 13px;
                 color: #111;
             }
+        }
+
+        .contents-box {
+            width: 96%;
+			margin-left: 2%;
+			margin-top: 25px;
+            font-size: 15px;
         }
     }
 }
