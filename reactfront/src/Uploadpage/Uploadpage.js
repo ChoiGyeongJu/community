@@ -6,6 +6,7 @@ import { useNavigate } from 'react-router-dom';
 import EditorComponent from './EditorComponent';
 import Select from 'react-select';
 import { ScrollTop } from '../Hooks/Hooks';
+import url from '../FetchURL/URL.js';
 
 const Uploadpage = () => {
 	const customStyles = {
@@ -63,9 +64,34 @@ const Uploadpage = () => {
 		setContent(value);
 	}
 
-	useEffect(() => {
-		console.log(content);
-	}, [content]);
+	const [Selected, setSelected] = useState();
+	const handleSelect = e => {
+		setSelected(e.value);
+	};
+
+	const Upload = () => {
+		const formData = new FormData();
+		formData.append('title', title);
+		formData.append('content', content);
+		formData.append('category', Selected);
+
+		if (title && content && Selected) {
+			fetch(`${url}/board/upload`, {
+				method: 'POST',
+				body: formData,
+			})
+				.then(res => res.json())
+				.then(data => {
+					if (data.message === 'success') {
+						alert('등록 성공');
+					} else {
+						alert('등록 실패');
+					}
+				});
+		} else {
+			alert('모든 칸을 채워주세요.');
+		}
+	};
 
 	return (
 		<div className="upload">
@@ -77,6 +103,8 @@ const Uploadpage = () => {
 						placeholder="게시판을 선택해주세요."
 						options={category}
 						styles={customStyles}
+						value={category.find(obj => obj.value === Selected)}
+						onChange={handleSelect}
 					/>
 					<input name="title" placeholder="제목을 입력해주세요." onChange={handleTitle} />
 					<EditorComponent value={content} onChange={onEditorChange} />
@@ -86,12 +114,14 @@ const Uploadpage = () => {
 						className="cancel-button"
 						onClick={() => {
 							ScrollTop();
-							navigate('/freeboard');
+							navigate(-1);
 						}}
 					>
 						취소
 					</div>
-					<div className="upload-button">등록</div>
+					<div className="upload-button" onClick={Upload}>
+						등록
+					</div>
 				</div>
 			</div>
 		</div>

@@ -21,7 +21,7 @@ const Detailpage = () => {
 	return (
 		<div className="detail-page">
 			<div className="board">
-				<div className="board-title">자유게시판</div>
+				<div className="board-title">{Detailcontents.category}</div>
 				<div className="contents-title">{Detailcontents.title}</div>
 				<div className="contents-info">
 					<div className="writer">
@@ -41,7 +41,12 @@ const Detailpage = () => {
 						{Detailcontents.reviews}
 					</div>
 				</div>
-				<div className="contents-box">{Detailcontents.content}</div>
+				<div
+					className="contents-box"
+					dangerouslySetInnerHTML={{
+						__html: Detailcontents.content,
+					}}
+				/>
 			</div>
 		</div>
 	);

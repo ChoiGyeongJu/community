@@ -1,19 +1,19 @@
 /* eslint-disable jsx-a11y/alt-text */
 /* eslint-disable react/jsx-key */
-import './Freeboard.scss';
+import '../Freeboard/Freeboard.scss';
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import FreePagination from './FreePagination/FreePagination';
+import GamePagination from './GamePagination/GamePagination';
 import boardImg from '../images/boardImg.png';
 import { ScrollTop } from '../Hooks/Hooks';
 import url from '../FetchURL/URL.js';
 
-const Freeboard = () => {
+const Gameboard = () => {
 	const navigate = useNavigate();
 	const [boardcontents, setBoardcontents] = useState([]);
 
 	useEffect(() => {
-		fetch(`${url}/board/board-list/1`)
+		fetch(`${url}/board/board-list/4`)
 			.then(res => res.json())
 			.then(data => {
 				if (data.message === 'success') {
@@ -46,7 +46,7 @@ const Freeboard = () => {
 			<div className="board">
 				<div className="board-title">
 					<img className="board-icon" src={boardImg} />
-					<div className="category">자유게시판</div>
+					<div className="category">게임 게시판</div>
 					<div
 						className="write-button"
 						onClick={() => {
@@ -94,7 +94,7 @@ const Freeboard = () => {
 						);
 					})}
 				{buttonPagination && Pagination.length > 0 && (
-					<FreePagination
+					<GamePagination
 						buttonPagination={buttonPagination}
 						setPage={setPage}
 						Page={Page}
@@ -106,4 +106,4 @@ const Freeboard = () => {
 	);
 };
 
-export default Freeboard;
+export default Gameboard;
