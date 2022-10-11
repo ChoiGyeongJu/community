@@ -36,11 +36,16 @@ class BoardView(APIView):
     def get(self, request, id):
         try:
             board = Board.objects.get(id=id)
+            if board.category.name == '자유게시판':
+                category = '자유게시판'
+            else:
+                category = str(board.category.name) + ' 게시판'
             board_info = {
                 'title'      : board.title,
                 'user_id'    : board.user_id,
                 'nickname'   : board.user.nickname,
                 'content'    : board.content,
+                'category'   : category,
                 'views'      : board.views,
                 'date'       : str(board.created_at)[:10],
                 'time'       : str(board.created_at)[11:16],
@@ -56,9 +61,10 @@ class BoardListView(APIView):
     # 특정 게시판의 게시글들을 반환하는 api
     def get(self, request, id):
         try:
-            boards = Board.objects.filter(category_id=id)
+            boards = Board.objects.filter(category_id=id).order_by('-created_at')
             board_list = [{
-                'id'         : len(boards) - i,
+                'index'      : len(boards) - i,
+                'id'         : board.id,
                 'title'      : board.title,
                 'user_id'    : board.user_id,
                 'nickname'   : board.user.nickname,
@@ -91,7 +97,7 @@ class BoardByCategory(APIView):
                     'views'      : board.views,
                     'date'       : str(board.created_at)[:10],
                     'time'       : str(board.created_at)[11:16],
-                }for board in Board.objects.filter(category_id=category.id)]
+                }for board in Board.objects.filter(category_id=category.id).order_by('-created_at')]
 
                 board_info.append(board_list)
 
@@ -106,14 +112,16 @@ class BoardUploadView(APIView):
         # 게시글 등록하는 api
         try:
             data     = request.data
-            user     = request.user
+            # user     = request.user
+            user     = User.objects.get(pk=1)
             title    = data['title']
             content  = data['content']
-            category = data['category']
+            category = int(data['category'])
 
             if "<img" in content:
                 total_content    = ''
-                replaced_content = content.replace('data:image/png;base64', 'data:image/jpeg;base64')
+                tmp              = content.replace('data:image/png;base64', 'data:image/jpeg;base64')
+                replaced_content = tmp.replace('style=""', '')
                 content_str      = replaced_content.split('data:image/jpeg;base64,')
 
                 total_content += content_str[0]
@@ -123,19 +131,16 @@ class BoardUploadView(APIView):
                     decoded_image = base64.urlsafe_b64decode(str(encoded_str[0]))
                     fileName      = 'community/' + uuid.uuid4().hex[:10] + '.png'
                     image_url     = s3_client.upload(ContentFile(decoded_image, fileName))
-
-                    if i > 0:
-                        total_content += '"' + image_url + '"' + encoded_str[1]
-                    else:
-                        total_content += image_url + '"' + encoded_str[1]
+                    replaced_content = replaced_content.replace(encoded_str[0], image_url)
+                    print(replaced_content)
                     
-                    content = total_content
+                    content = replaced_content.replace('data:image/jpeg;base64,', '')
             
             Board.objects.create(
                 title      = title,
                 content    = content,
                 user       = user,
-                category   = category,
+                category   = Category.objects.get(pk=category),
                 views      = 0,
                 created_at = str(datetime.now(timezone('Asia/Seoul'))),
             )
