@@ -13,6 +13,8 @@ from user.models import User
 
 from core.s3_uploader import s3_client
 
+from user.utils import login_decorator
+
 
 class CategoryView(APIView):
     # 게시판 종류를 반환하는 api
@@ -108,12 +110,14 @@ class BoardByCategory(APIView):
 
 
 class BoardUploadView(APIView):
+    @login_decorator
     def post(self, request):
         # 게시글 등록하는 api
         try:
             data     = request.data
-            # user     = request.user
-            user     = User.objects.get(pk=1)
+            user     = request.user
+            print(user)
+            # user     = User.objects.get(pk=1)
             title    = data['title']
             content  = data['content']
             category = int(data['category'])
@@ -136,7 +140,7 @@ class BoardUploadView(APIView):
                     
                     content = replaced_content.replace('data:image/jpeg;base64,', '')
             
-            Board.objects.create(
+            board = Board.objects.create(
                 title      = title,
                 content    = content,
                 user       = user,
@@ -145,13 +149,14 @@ class BoardUploadView(APIView):
                 created_at = str(datetime.now(timezone('Asia/Seoul'))),
             )
 
-            return JsonResponse({'message': 'success'}, status=201)
+            return JsonResponse({'message': 'success', 'board_id': board.id}, status=201)
 
         except:
             return JsonResponse({'message': 'upload fail'}, status=404)
 
     
 class BoardDeleteView(APIView):
+    @login_decorator
     def delete(self, request, id):
         # 게시글을 삭제하는 api
         user = request.user

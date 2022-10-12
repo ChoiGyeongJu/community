@@ -1,6 +1,6 @@
-nickname,is_valid,
-홍길동,True
-이순신,True
-세종대왕,True
-강동원,True
-원빈,True
+nickname,is_valid,social,social_login_id
+홍길동,True,1,rudwn123
+이순신,True,2,rudwn
+세종대왕,True,1,rudwn5142
+강동원,True,1,rudwn321
+원빈,True,2,rudwn000
