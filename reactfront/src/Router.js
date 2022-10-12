@@ -3,6 +3,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 import Navbar from './Navbar/Navbar.js';
 import Mainpage from './Mainpage/Mainpage.js';
+import Loginpage from './Loginpage/Loginpage.js';
 import Freeboard from './Freeboard/Freeboard.js';
 import Sportsboard from './Sportsboard/Sportsboard.js';
 import Stockboard from './Stockboard/Stockboard.js';
@@ -19,6 +20,7 @@ function Router() {
 			<Navbar />
 			<Routes>
 				<Route path="/" element={<Mainpage />} />
+				<Route path="/login" element={<Loginpage />} />
 				<Route path="/Board1" element={<Freeboard />} />
 				<Route path="/Board2" element={<Sportsboard />} />
 				<Route path="/Board3" element={<Stockboard />} />

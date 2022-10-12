@@ -67,7 +67,13 @@ const Navbar = () => {
 					</div>
 				</div>
 				<img className="search-icon" src={search} />
-				<img className="login-icon" src={loginbtn} />
+				<img
+					className="login-icon"
+					src={loginbtn}
+					onClick={() => {
+						navigate('/login');
+					}}
+				/>
 			</div>
 		</div>
 	);

@@ -26,3 +26,4 @@ package-lock.json
 package.json
 /public
 /src/FetchURL
+/src/Secret

@@ -70,26 +70,34 @@ const Uploadpage = () => {
 	};
 
 	const Upload = () => {
-		const formData = new FormData();
-		formData.append('title', title);
-		formData.append('content', content);
-		formData.append('category', Selected);
+		if (window.confirm('게시글을 등록하시겠습니까?')) {
+			const formData = new FormData();
+			formData.append('title', title);
+			formData.append('content', content);
+			formData.append('category', Selected);
 
-		if (title && content && Selected) {
-			fetch(`${url}/board/upload`, {
-				method: 'POST',
-				body: formData,
-			})
-				.then(res => res.json())
-				.then(data => {
-					if (data.message === 'success') {
-						alert('등록 성공');
-					} else {
-						alert('등록 실패');
-					}
-				});
+			if (title && content && Selected) {
+				fetch(`${url}/board/upload`, {
+					method: 'POST',
+					headers: {
+						AccessToken: localStorage.getItem('token'),
+						RefreshToken: localStorage.getItem('refreshToken'),
+					},
+					body: formData,
+				})
+					.then(res => res.json())
+					.then(data => {
+						console.log(data);
+						if (data.message === 'success') {
+							window.location.replace(`/Detailpage/${data.board_id}`);
+						} else {
+							alert('등록 실패');
+						}
+					});
+			} else {
+				alert('모든 칸을 채워주세요.');
+			}
 		} else {
-			alert('모든 칸을 채워주세요.');
 		}
 	};
 

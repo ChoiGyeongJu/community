@@ -1,0 +1,26 @@
+.login-page {
+    position: relative;
+    padding-top: 150px;
+    width: 45%;
+    margin: 0 auto;
+    display: flex;
+    place-items: center;
+    max-width: 1180px;
+
+    .board {
+        width: 95%;
+        height: 410px;
+        overflow: hidden;
+        margin-bottom: 50px;
+        border-radius: 12px;
+        background-color: white;
+
+        .title {
+            padding-top: 50px;
+            display: flex;
+            justify-content: center;
+            font-size: 24px;
+        }
+    }   
+    
+}
