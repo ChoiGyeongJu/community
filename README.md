@@ -8,7 +8,7 @@
 ### ***Login Page***
 <div style="display: flex;">
   <img src="https://user-images.githubusercontent.com/97934158/195560575-5bd05877-bb53-4ee1-ae91-c956151b6063.png" width='350' />
-  <img src="https://user-images.githubusercontent.com/97934158/195560871-2d8910e5-4997-4b17-bb14-c86c00e28cee.png" width='650' />
+  <img src="https://user-images.githubusercontent.com/97934158/195560871-2d8910e5-4997-4b17-bb14-c86c00e28cee.png" width='600' />
 </div>
 
 ### ***Article List Page***
