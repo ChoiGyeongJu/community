@@ -15,16 +15,16 @@
 		.logo {
 			cursor: pointer;
 			width: 180px;
-            max-height: 100px;
+			max-height: 100px;
 		}
 
 		.menu-wrap {
-            position: relative;
-            display: flex;
-            cursor: pointer;
-            width: 215px;
-            padding-top: 36px;
-            justify-content: center;
+			position: relative;
+			display: flex;
+			cursor: pointer;
+			width: 215px;
+			padding-top: 36px;
+			justify-content: center;
 
 			.menu {
 				font-size: 18px;
@@ -33,25 +33,39 @@
 			}
 		}
 
-        .search-icon {
-            display: flex;
-            cursor: pointer;
-            width: 30px;
-            height: 30px;
-            padding-top: 40px;
-            justify-content: center;
-            margin-left: 16px;
-        }
+		.search-icon {
+			display: flex;
+			cursor: pointer;
+			width: 30px;
+			height: 30px;
+			padding-top: 40px;
+			justify-content: center;
+			margin-left: 16px;
+		}
 
-        .login-icon {
-            display: flex;
-            cursor: pointer;
-            width: 40px;
-            height: 38px;
-            padding-top: 36px;
-            justify-content: center;
-            margin-left: 28px;
-        }
-        
+		.login-icon {
+			display: flex;
+			cursor: pointer;
+			width: 40px;
+			height: 38px;
+			padding-top: 36px;
+			justify-content: center;
+			margin-left: 30px;
+		}
+
+		.toggle-menu {
+			width: 110px;
+			position: absolute;
+			height: auto;
+			float: right;
+			text-align: center;
+			border: 1px solid gray;
+			border-radius: 8px;
+			background-color: white;
+			color: #5f656f;
+			margin-left: 1080px;
+			margin-top: 85px;
+			text-decoration: underline;
+		}
 	}
 }

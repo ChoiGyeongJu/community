@@ -1,17 +1,18 @@
 .login-page {
     position: relative;
     padding-top: 150px;
-    width: 45%;
+    width: 40%;
     margin: 0 auto;
     display: flex;
     place-items: center;
     max-width: 1180px;
 
     .board {
-        width: 95%;
-        height: 410px;
-        overflow: hidden;
+        width: 100%;
+        min-height: 400px;
         margin-bottom: 50px;
+        padding-top: 80px;
+        padding-bottom: 200px;
         border-radius: 12px;
         background-color: white;
 

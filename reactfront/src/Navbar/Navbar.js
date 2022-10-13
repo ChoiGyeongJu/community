@@ -10,6 +10,45 @@ import url from '../FetchURL/URL';
 
 const Navbar = () => {
 	const navigate = useNavigate();
+	const [UserLog, setUserLog] = useState(false);
+	const [Toggle, setToggle] = useState(false);
+
+	useEffect(() => {
+		if (localStorage.getItem('token')) {
+			setUserLog(true);
+		} else {
+			setUserLog(false);
+		}
+	}, [localStorage.getItem('token')]);
+
+	const ClickLog = () => {
+		setToggle(!Toggle);
+		if (UserLog) {
+		} else {
+			ScrollTop();
+			navigate('/login');
+		}
+	};
+
+	const requestLogOut = () => {
+		localStorage.removeItem('token');
+		localStorage.removeItem('refreshToken');
+		alert('로그아웃 되었습니다.');
+		window.location.replace('/');
+	};
+
+	const el = useRef();
+	const handleToggle = e => {
+		if (Toggle && (!el.current || !el.current.contains(e.target))) {
+			setToggle(false);
+		}
+	};
+	useEffect(() => {
+		document.addEventListener('click', handleToggle);
+		return () => {
+			document.removeEventListener('click', handleToggle);
+		};
+	});
 
 	return (
 		<div className="navbar">
@@ -67,13 +106,30 @@ const Navbar = () => {
 					</div>
 				</div>
 				<img className="search-icon" src={search} />
-				<img
-					className="login-icon"
-					src={loginbtn}
-					onClick={() => {
-						navigate('/login');
-					}}
-				/>
+				<img className="login-icon" src={loginbtn} onClick={ClickLog} ref={el} />
+				{UserLog && Toggle ? (
+					<div className="toggle-menu">
+						<p
+							style={{ cursor: 'pointer' }}
+							onClick={() => {
+								setToggle(false);
+								ScrollTop();
+								navigate('/mypage');
+							}}
+						>
+							마이페이지
+						</p>
+						<p
+							style={{ cursor: 'pointer' }}
+							onClick={() => {
+								setToggle(false);
+								requestLogOut();
+							}}
+						>
+							로그아웃
+						</p>
+					</div>
+				) : null}
 			</div>
 		</div>
 	);

@@ -1,7 +1,8 @@
 .main-page {
     position: relative;
     padding-top: 150px;
-    width: 65%;
+    // width: 65%;
+    width: 1200px;
     margin: 0 auto;
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -9,7 +10,8 @@
     max-width: 1180px;
 
     .board {
-        width: 95%;
+        // width: 95%;
+        width: 560px;
         height: 410px;
         overflow: hidden;
         margin-bottom: 50px;
