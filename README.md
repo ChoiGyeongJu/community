@@ -6,10 +6,8 @@
 
 
 ### ***Login Page***
-<div style="display: flex;">
-  <img src="https://user-images.githubusercontent.com/97934158/195560575-5bd05877-bb53-4ee1-ae91-c956151b6063.png" width='330' />
-  <img src="https://user-images.githubusercontent.com/97934158/195560871-2d8910e5-4997-4b17-bb14-c86c00e28cee.png" width='550' />
-</div>
+<img src="https://user-images.githubusercontent.com/97934158/195562148-9ee5fd94-d3b7-4cb1-9f83-db5e422a9a32.png" width='600' />
+
 
 ### ***Article List Page***
 <img src="https://user-images.githubusercontent.com/97934158/195092014-16445675-500b-4843-bd23-ca7b6c104ae5.png" width='600' />
