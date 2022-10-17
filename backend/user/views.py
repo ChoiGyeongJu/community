@@ -4,6 +4,8 @@ from django.conf                  import settings
 from .models                      import *
 from django.views.decorators.csrf import csrf_exempt
 from django.utils.decorators      import method_decorator
+from django.db                    import transaction
+from django.db.models             import Q
 import jwt, requests, datetime
 import urllib.request
 
@@ -102,64 +104,53 @@ class KakaoLoginView(APIView):
 
 @method_decorator(csrf_exempt, name='dispatch')
 class NaverLoginView(APIView):
+    @transaction.atomic
     def post(self, request):
-        data = request.data
-        token  = data['token']
-        header = "Bearer " + token # Bearer 다음에 공백 추가
-        url = "https://openapi.naver.com/v1/nid/me"
-        request = urllib.request.Request(url)
-        request.add_header("Authorization", header)
-        response = urllib.request.urlopen(request)
-        rescode = response.getcode()
+        try:
+            data       = request.data
+            user_name  = data['name']
+            user_email = data['email']
+            naver_id   = data['id']
 
-        if(rescode==200):
-            response_body = response.read()
-            print(response_body.decode('utf-8'))
-            print(type(response_body.decode('utf-8')))
+            if User.objects.filter(social_login_id = naver_id).exists():
+                user_info      = User.objects.get(social_login_id=naver_id)
+                access_token   = jwt.encode({'id': naver_id, 'exp': datetime.datetime.utcnow() + datetime.timedelta(hours=6)}, settings.SECRET_KEY, algorithm='HS256')
+                refresh_token  = jwt.encode({'id': naver_id, 'exp': datetime.datetime.utcnow() + datetime.timedelta(hours=24)}, settings.SECRET_KEY, algorithm='HS256')
 
-        else:
-            print("Error Code:" + rescode)
+                JWT = {
+                    'AccessToken' : access_token,
+                    'RefreshToken': refresh_token
+                }
+                User.objects.filter(id=user_info.id).update(
+                    refresh_token = refresh_token
+                )
 
-        res_str = response_body.decode('utf-8')
-        naver_id   = (res_str.split('"id":"')[1]).split('"')[0]
-        user_name  = (res_str.split('"name":"')[1]).split('"')[0]
-        user_email = (res_str.split('"email":"')[1]).split('"')[0]
+                return JsonResponse({"message": "success", "JWT": JWT}, status=200)
 
-        if User.objects.filter(social_login_id = naver_id).exists():
-            user_info      = User.objects.get(social_login_id=naver_id)
-            access_token   = jwt.encode({'id': naver_id, 'exp': datetime.datetime.utcnow() + datetime.timedelta(hours=6)}, settings.SECRET_KEY, algorithm='HS256')
-            refresh_token  = jwt.encode({'id': naver_id, 'exp': datetime.datetime.utcnow() + datetime.timedelta(hours=24)}, settings.SECRET_KEY, algorithm='HS256')
+            else:
+                new_user_info = User.objects.create(
+                    social_login_id = naver_id,
+                    nickname        = user_name,
+                    social          = SocialPlatform.objects.get(platform ="naver"),
+                    email           = user_email,
+                )
 
-            JWT = {
-                'AccessToken' : access_token,
-                'RefreshToken': refresh_token
-            }
-            User.objects.filter(id=user_info.id).update(
-                refresh_token = refresh_token
-            )
+                access_token  = jwt.encode({'id': naver_id, 'exp': datetime.datetime.utcnow() + datetime.timedelta(hours=6)}, settings.SECRET_KEY, algorithm='HS256')
+                refresh_token = jwt.encode({'id': naver_id, 'exp': datetime.datetime.utcnow() + datetime.timedelta(hours=24)}, settings.SECRET_KEY, algorithm='HS256')
 
-            return JsonResponse({"message": "success", "JWT": JWT}, status=200)
+                JWT = {
+                    'AccessToken': access_token,
+                    'RefreshToken': refresh_token
+                }
+                User.objects.filter(id=new_user_info.id).update(
+                    refresh_token = refresh_token
+                )
 
-        else:
-            new_user_info = User.objects.create(
-                social_login_id = naver_id,
-                nickname        = user_name,
-                social          = SocialPlatform.objects.get(platform ="naver"),
-                email           = user_email,
-            )
+                return JsonResponse({'message': 'success', 'JWT': JWT}, status=200)
 
-            access_token  = jwt.encode({'id': naver_id, 'exp': datetime.datetime.utcnow() + datetime.timedelta(hours=6)}, settings.SECRET_KEY, algorithm='HS256')
-            refresh_token = jwt.encode({'id': naver_id, 'exp': datetime.datetime.utcnow() + datetime.timedelta(hours=24)}, settings.SECRET_KEY, algorithm='HS256')
+        except:
+            return JsonResponse({'message': 'error'}, status=401)
 
-            JWT = {
-                'AccessToken': access_token,
-                'RefreshToken': refresh_token
-            }
-            User.objects.filter(id=new_user_info.id).update(
-                refresh_token = refresh_token
-            )
-
-            return JsonResponse({'message': 'success', 'JWT': JWT}, status=200)
 
 
 class DeleteUser(APIView):

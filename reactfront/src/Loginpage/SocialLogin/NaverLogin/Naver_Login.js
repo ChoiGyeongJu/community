@@ -4,7 +4,6 @@ import './Naver_Login.scss';
 import naverToken from '../../../Secret/naverToken.js';
 
 const Naver_Login = () => {
-	const [doLogin, setDoLogin] = useState(false);
 	const naverRef = useRef();
 	const handleClick = () => {
 		naverRef.current.children[0].click();
@@ -25,8 +24,8 @@ const Naver_Login = () => {
 		naverScript.onload = () => {
 			const naverLogin = new window.naver.LoginWithNaverId({
 				clientId: naverToken,
-				callbackUrl: 'http://localhost:3000/login',
-				callbackHandle: true,
+				callbackUrl: 'http://localhost:3000/login#',
+				callbackHandle: false,
 				isPopup: false, // 로그인 팝업여부
 				loginButton: {
 					color: 'green',
@@ -37,10 +36,12 @@ const Naver_Login = () => {
 			naverLogin.init();
 			naverLogin.logout();
 			naverLogin.getLoginStatus(status => {
-				setDoLogin(true);
 				if (status) {
 					const formData = new FormData();
 					formData.append('token', localStorage.getItem('naver_token'));
+					formData.append('name', naverLogin.user.name);
+					formData.append('email', naverLogin.user.email);
+					formData.append('id', naverLogin.user.id);
 					fetch(`${url}/user/login/naver`, {
 						method: 'POST',
 						body: formData,
@@ -61,9 +62,9 @@ const Naver_Login = () => {
 	};
 
 	useEffect(() => {
-		initializeNaverLogin();
 		userAccessToken();
-	}, [doLogin]);
+		initializeNaverLogin();
+	}, []);
 
 	return (
 		<div className="naver-button">

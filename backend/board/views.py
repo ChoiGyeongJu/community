@@ -106,7 +106,7 @@ class BoardByCategory(APIView):
             return JsonResponse({'message': 'success', 'board_info': board_info}, status=200)
 
         except Board.DoesNotExist:
-            return JsonResponse({'message': 'Board Not Found'}, statue=401)
+            return JsonResponse({'message': 'Board Not Found'}, status=401)
 
 
 class BoardUploadView(APIView):
