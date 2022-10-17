@@ -16,6 +16,7 @@ const Kakao_Login = () => {
 			.then(res => res.json())
 			.then(data => {
 				localStorage.removeItem('token');
+				localStorage.removeItem('refreshToken');
 				if (data.message === 'success') {
 					localStorage.setItem('token', data.JWT.AccessToken);
 					localStorage.setItem('refreshToken', data.JWT.RefreshToken);
@@ -28,7 +29,7 @@ const Kakao_Login = () => {
 			<KakaoLogin
 				token={token}
 				onSuccess={kakaoResponse}
-				onFail={console.log('')}
+				onFail={console.info}
 				onLogout={console.info}
 				useLoginForm
 				style={{

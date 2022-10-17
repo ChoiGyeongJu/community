@@ -31,8 +31,7 @@ const Navbar = () => {
 	};
 
 	const requestLogOut = () => {
-		localStorage.removeItem('token');
-		localStorage.removeItem('refreshToken');
+		localStorage.clear();
 		alert('로그아웃 되었습니다.');
 		window.location.replace('/');
 	};

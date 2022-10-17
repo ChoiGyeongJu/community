@@ -18,6 +18,7 @@ const Google_Login = () => {
 			.then(response => response.json())
 			.then(data => {
 				localStorage.removeItem('token');
+				localStorage.removeItem('refreshToken');
 				if (data.message === 'success') {
 					localStorage.setItem('token', data.JWT.AccessToken);
 					localStorage.setItem('refreshToken', data.JWT.RefreshToken);
@@ -25,13 +26,6 @@ const Google_Login = () => {
 				}
 			});
 	};
-
-	// const onLogout = () => {
-	// 	localStorage.removeItem('token');
-	// 	localStorage.removeItem('refreshToken');
-	// 	alert('로그아웃 되었습니다.');
-	// 	window.location.replace('/');
-	// };
 
 	return (
 		<React.Fragment>
