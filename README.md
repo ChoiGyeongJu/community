@@ -6,7 +6,7 @@
 
 
 ### ***Login Page***
-<img src="https://user-images.githubusercontent.com/97934158/195562148-9ee5fd94-d3b7-4cb1-9f83-db5e422a9a32.png" width='600' />
+<img src="https://user-images.githubusercontent.com/97934158/196140405-b4b31d59-6700-4f8a-8f84-63a045fbe8a7.png" width='600' />
 
 
 ### ***Article List Page***
