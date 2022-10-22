@@ -48,6 +48,7 @@ class BoardView(APIView):
                 'nickname'   : board.user.nickname,
                 'content'    : board.content,
                 'category'   : category,
+                'category_id': board.category.id,
                 'views'      : board.views,
                 'date'       : str(board.created_at)[:10],
                 'time'       : str(board.created_at)[11:16],
@@ -116,8 +117,6 @@ class BoardUploadView(APIView):
         try:
             data     = request.data
             user     = request.user
-            print(user)
-            # user     = User.objects.get(pk=1)
             title    = data['title']
             content  = data['content']
             category = int(data['category'])

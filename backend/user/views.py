@@ -1,6 +1,8 @@
 from django.http                  import JsonResponse
 from rest_framework.views         import APIView
 from django.conf                  import settings
+
+from user.utils                   import login_decorator
 from .models                      import *
 from django.views.decorators.csrf import csrf_exempt
 from django.utils.decorators      import method_decorator
@@ -159,3 +161,19 @@ class DeleteUser(APIView):
         user.delete()
 
         return JsonResponse({'message': 'delete success'}, status=200)
+
+
+class UserInfoView(APIView):
+    @login_decorator
+    def get(self, request):
+        try:
+            user = request.user
+            user_info = {
+                'id'       : user.id,
+                'nickname' : user.nickname,
+            }
+
+            return JsonResponse({'message': 'success', 'user_info': user_info}, status=200)
+        
+        except User.DoesNotExist:
+            return JsonResponse({'message': 'Not Found'}, status=401)
