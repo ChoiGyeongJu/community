@@ -13,9 +13,13 @@
 <img src="https://user-images.githubusercontent.com/97934158/195092014-16445675-500b-4843-bd23-ca7b6c104ae5.png" width='600' />
 
 
-### ***Detail Page***
-<img src="https://user-images.githubusercontent.com/97934158/195092714-4a8a0f9d-aec9-41f7-94dd-2104d6f7d9f1.png" width='600' />
-
-
 ### ***Upload Page***
 <img src="https://user-images.githubusercontent.com/97934158/195089709-7a100ffa-4465-4442-9485-8f4f5f68e0f9.png" width='600' />
+
+
+### ***Detail Page***
+<img src="https://user-images.githubusercontent.com/97934158/197381261-832e6ff0-a999-4e69-b0f6-ab94b8bbea70.png" width='600' />
+
+
+### ***Review List***
+<img src="https://user-images.githubusercontent.com/97934158/197381220-6c45ab0b-f368-411b-8c2b-666e4de86c74.png" width='600' />
