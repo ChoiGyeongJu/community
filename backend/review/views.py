@@ -68,6 +68,25 @@ class ReviewList(APIView):
             return JsonResponse({'message': 'error'}, status=404)
 
 
+class EditReview(APIView):
+    @login_decorator
+    def patch(self, request, id):
+        # try:
+            data = request.data
+            user = request.user
+            # user = User.objects.get(id=1)
+            content = data['content']
+            
+            Review.objects.filter(id=id).update(
+                content = content,
+            )
+
+            return JsonResponse({'message': 'success'}, status=200)
+        
+        # except:
+        #     return JsonResponse({'message': 'update fail'}, status=404)
+
+
 class DeleteReview(APIView):
     @login_decorator
     def delete(self, request, id):

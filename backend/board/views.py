@@ -158,7 +158,24 @@ class BoardDeleteView(APIView):
     @login_decorator
     def delete(self, request, id):
         # 게시글을 삭제하는 api
-        user = request.user
-        Board.objects.filter(Q(pk=id) & Q(user_id=user.pk)).delete()
+        try:
+            user = request.user
+            Board.objects.filter(Q(pk=id) & Q(user_id=user.pk)).delete()
 
-        return JsonResponse({'message': 'success'}, status=201)
+            return JsonResponse({'message': 'success'}, status=201)
+        
+        except:
+            return JsonResponse({'message': 'delete fail'}, status=404)
+
+
+class UpdateViews(APIView):
+    def patch(self, request, id):
+        try:
+            before_views = Board.objects.get(id=id).views
+            Board.objects.filter(id=id).update(
+                views = before_views + 1,
+            )
+            return JsonResponse({'message': 'success'}, status=201)
+        
+        except:
+            return JsonResponse({'message': 'update views fail'}, status=404)

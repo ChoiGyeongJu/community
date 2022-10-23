@@ -8,4 +8,5 @@ urlpatterns = [
     path('board-all', BoardByCategory.as_view()),
     path('upload', BoardUploadView.as_view()),
     path('delete/<int:id>', BoardDeleteView.as_view()),
+    path('add-view/<int:id>', UpdateViews.as_view()),
 ]
