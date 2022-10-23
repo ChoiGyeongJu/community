@@ -41,21 +41,37 @@ const Stockboard = () => {
 			setButtonPagination(buttonArr);
 		}
 	}, [boardcontents]);
+
+	const AddViews = id => {
+		fetch(`${url}/board/add-view/${id}`, {
+			method: 'PATCH',
+		})
+			.then(res => res.json())
+			.then(data => {
+				if (data.message === 'success') {
+				}
+			});
+	};
+
 	return (
 		<div className="freeboard">
 			<div className="board">
 				<div className="board-title">
 					<img className="board-icon" src={boardImg} />
 					<div className="category">주식/코인 게시판</div>
-					<div
-						className="write-button"
-						onClick={() => {
-							ScrollTop();
-							navigate('/upload');
-						}}
-					>
-						글쓰기
-					</div>
+					{localStorage.getItem('token') ? (
+						<div>
+							<div
+								className="write-button"
+								onClick={() => {
+									ScrollTop();
+									navigate('/upload');
+								}}
+							>
+								글쓰기
+							</div>
+						</div>
+					) : null}
 				</div>
 				<div className="index">
 					<div className="index-title">번호</div>
@@ -76,12 +92,13 @@ const Stockboard = () => {
 					Pagination &&
 					Pagination[Page].map((com, idx) => {
 						return (
-							<div className="contents-info">
+							<div className="contents-info" key={idx}>
 								<div className="number">{com.index}</div>
 								<div
 									className="title"
 									onClick={() => {
 										ScrollTop();
+										AddViews(com.id);
 										navigate(`/Detailpage/${com.id}`);
 									}}
 								>

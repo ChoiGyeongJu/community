@@ -17,6 +17,17 @@ const Review = ({
 	MyParentArr, // 대댓글 수정 삭제할때 자신의 리뷰인지 확인할 때 사용
 	setMyParentArr,
 }) => {
+	const [IsLogin, setIsLogin] = useState(false);
+	const [placeHolder, setPlaceHolder] = useState('');
+	useEffect(() => {
+		if (localStorage.getItem('token')) {
+			setIsLogin(true);
+			setPlaceHolder('댓글 내용을 입력하세요.');
+		} else {
+			setPlaceHolder('로그인 후 이용할 수 있습니다.');
+		}
+	}, []);
+
 	const [content, setContent] = useState(); // 댓글
 	const handleContent = e => {
 		setContent(e.target.value);
@@ -25,6 +36,12 @@ const Review = ({
 	const [parentContent, setparentContent] = useState(); // 대댓글
 	const handleParentReview = e => {
 		setparentContent(e.target.value);
+	};
+
+	const [NewReview, setNewReview] = useState(); // 수정한 댓글
+	const handleNewReview = e => {
+		setNewReview(e.target.value);
+		console.log(NewReview);
 	};
 
 	const UploadReview = () => {
@@ -82,16 +99,31 @@ const Review = ({
 		}
 	};
 
-	const [IsLogin, setIsLogin] = useState(false);
-	const [placeHolder, setPlaceHolder] = useState('');
-	useEffect(() => {
-		if (localStorage.getItem('token')) {
-			setIsLogin(true);
-			setPlaceHolder('댓글 내용을 입력하세요.');
-		} else {
-			setPlaceHolder('로그인 후 이용할 수 있습니다.');
+	const UpdateReview = id => {
+		// 댓글 수정 함수
+		if (NewReview && IsLogin) {
+			if (window.confirm('댓글을 수정하시겠습니까?')) {
+				const formData = new FormData();
+				formData.append('content', NewReview);
+				fetch(`${url}/review/update/${id}`, {
+					method: 'PATCH',
+					headers: {
+						AccessToken: localStorage.getItem('token'),
+						RefreshToken: localStorage.getItem('refreshToken'),
+					},
+					body: formData,
+				})
+					.then(res => res.json())
+					.then(data => {
+						if (data.message === 'success') {
+							window.location.reload();
+						} else {
+							alert('댓글 수정에 실패하였습니다.');
+						}
+					});
+			}
 		}
-	}, []);
+	};
 
 	const DeleteReview = id => {
 		// 댓글 삭제 함수
@@ -117,22 +149,26 @@ const Review = ({
 		// 답글 textarea 토글
 		if (localStorage.getItem('token')) {
 			let tmp = [...parentArr];
-			if (tmp[id] === false) {
-				for (let i = 0; i < Reviewcontents.length; i++) {
-					tmp[i] = false;
-				}
-				tmp[id] = true;
-			} else {
-				for (let i = 0; i < Reviewcontents.length; i++) {
-					tmp[i] = false;
-				}
+			for (let i = 0; i < Reviewcontents.length; i++) {
+				tmp[i] = false;
 			}
+			tmp[id] = true;
 			setParentArr(tmp);
 		}
 	};
 
+	const initParentArr = () => {
+		// 답글 textarea 토글 false로 초기화
+		let tmp = [...parentArr];
+		for (let i = 0; i < Reviewcontents.length; i++) {
+			tmp[i] = false;
+		}
+		setParentArr(tmp);
+	};
+
 	const handleCorrect = id => {
 		// 댓글 수정 삭제 토글
+		initMyParentArr();
 		initParentArr();
 		let tmp = [...MyReviewArr];
 		if (tmp[id] === false) {
@@ -160,6 +196,7 @@ const Review = ({
 	const handleParentCorrect = id => {
 		// 대댓글 수정 삭제 토글
 		initReviewArr();
+		initParentArr();
 		let tmp = [...MyParentArr];
 		if (tmp[id] === false) {
 			for (let i = 0; i < MyParentArr.length; i++) {
@@ -173,7 +210,8 @@ const Review = ({
 		}
 		setMyParentArr(tmp);
 	};
-	const initParentArr = () => {
+
+	const initMyParentArr = () => {
 		// 대댓글 토글 false로 초기화
 		let tmp = [...MyParentArr];
 		for (let i = 0; i < MyParentArr.length; i++) {
@@ -181,6 +219,8 @@ const Review = ({
 		}
 		setMyParentArr(tmp);
 	};
+
+	const [EditReview, setEditReview] = useState(false);
 
 	return (
 		<div className="review-box">
@@ -212,7 +252,16 @@ const Review = ({
 													...
 												</div>
 												<div className={MyReviewArr[idx] ? 'show-toggle' : 'hide-toggle'}>
-													<div className="text">수정</div>
+													<div
+														className="text"
+														onClick={() => {
+															setEditReview(true);
+															handleCorrect(idx);
+															handleParent(idx);
+														}}
+													>
+														수정
+													</div>
 													<div
 														className="text"
 														onClick={() => {
@@ -224,18 +273,47 @@ const Review = ({
 												</div>
 											</div>
 										) : null}
-										<div className="review-content">
-											<pre className="content">{com.content}</pre>
-										</div>
-										<div
-											className="write-button"
-											onClick={() => {
-												handleParent(idx);
-											}}
-										>
-											답글달기
-										</div>
-										{parentArr[idx] ? (
+										{/*  */}
+										{parentArr[idx] && EditReview ? (
+											<div style={{ paddingBottom: '50px', marginTop: '20px' }}>
+												<textarea onChange={handleNewReview}>{com.content}</textarea>
+												<button
+													className="upload-button"
+													onClick={() => {
+														UpdateReview(com.id);
+													}}
+												>
+													수정
+												</button>
+												<button
+													className="upload-button"
+													onClick={() => {
+														initReviewArr();
+														initMyParentArr();
+														initParentArr();
+													}}
+												>
+													취소
+												</button>
+											</div>
+										) : (
+											<div>
+												<div className="review-content">
+													<pre className="content">{com.content}</pre>
+												</div>
+												<div
+													className="write-button"
+													onClick={() => {
+														setEditReview(false);
+														handleParent(idx);
+													}}
+												>
+													답글달기
+												</div>
+											</div>
+										)}
+										{/*  */}
+										{parentArr[idx] && !EditReview ? (
 											<div style={{ paddingBottom: '50px' }}>
 												<textarea onChange={handleParentReview} placeholder="답글을 입력하세요." />
 												<button
@@ -249,7 +327,9 @@ const Review = ({
 												<button
 													className="upload-button"
 													onClick={() => {
-														handleParent(idx);
+														initReviewArr();
+														initMyParentArr();
+														initParentArr();
 													}}
 												>
 													취소
@@ -282,7 +362,7 @@ const Review = ({
 																			<div
 																				className={MyParentArr[id] ? 'show-toggle' : 'hide-toggle'}
 																			>
-																				<div className="text">수정</div>
+																				{/* <div className="text">수정</div> */}
 																				<div
 																					className="text"
 																					onClick={() => {

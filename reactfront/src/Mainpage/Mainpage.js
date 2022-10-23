@@ -26,7 +26,16 @@ const Mainpage = () => {
 				}
 			});
 	}, []);
-
+	const AddViews = id => {
+		fetch(`${url}/board/add-view/${id}`, {
+			method: 'PATCH',
+		})
+			.then(res => res.json())
+			.then(data => {
+				if (data.message === 'success') {
+				}
+			});
+	};
 	return (
 		<div className="main-page">
 			{category.length > 0 &&
@@ -50,6 +59,7 @@ const Mainpage = () => {
 												className="board-title"
 												onClick={() => {
 													ScrollTop();
+													AddViews(com.id);
 													navigate(`/Detailpage/${com.id}`);
 												}}
 											>
