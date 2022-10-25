@@ -9,6 +9,9 @@
 <img src="https://user-images.githubusercontent.com/97934158/196140405-b4b31d59-6700-4f8a-8f84-63a045fbe8a7.png" width='600' />
 
 
+### ***My Page***
+<img src="https://user-images.githubusercontent.com/97934158/197740144-a57306e8-d8cf-4926-b56e-1ed5a9af5bbb.png" width='600' />
+
 ### ***Article List Page***
 <img src="https://user-images.githubusercontent.com/97934158/195092014-16445675-500b-4843-bd23-ca7b6c104ae5.png" width='600' />
 
