@@ -11,6 +11,7 @@ import Gameboard from './Gameboard/Gameboard.js';
 
 import Detailpage from './Detailpage/Detailpage.js';
 import Uploadpage from './Uploadpage/Uploadpage.js';
+import Mypage from './Mypage/Mypage.js';
 
 import Footer from './Footer/Footer.js';
 
@@ -21,7 +22,7 @@ function Router() {
 			<Routes>
 				<Route path="/" element={<Mainpage />} />
 				<Route path="/login" element={<Loginpage />} />
-				<Route path="/mypage" element={<Stockboard />} />
+				<Route path="/Mypage" element={<Mypage />} />
 				<Route path="/Board1" element={<Freeboard />} />
 				<Route path="/Board2" element={<Sportsboard />} />
 				<Route path="/Board3" element={<Stockboard />} />
