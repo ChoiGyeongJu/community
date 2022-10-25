@@ -60,7 +60,7 @@ class ReviewList(APIView):
                     'user_id'       : review.user.id,
                     'date'          : str(review.created_at)[:16],
                 })
-                print(review.user.id)
+                # print(review.user.id)
 
             return JsonResponse({'message': 'success', 'review_info': review_info}, status=200)
         

@@ -17,7 +17,7 @@ def login_decorator(func):
             access_token_payload  = jwt.decode(access_token, settings.SECRET_KEY, settings.ALGORITHM)
             print(access_token_payload)
             user                  = User.objects.filter(Q(social_login_id=access_token_payload['id']))
-            print(user)
+            # print(user)
             request.user          = user[0]
 
         except jwt.exceptions.DecodeError:

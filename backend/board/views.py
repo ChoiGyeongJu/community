@@ -135,7 +135,7 @@ class BoardUploadView(APIView):
                     fileName      = 'community/' + uuid.uuid4().hex[:10] + '.png'
                     image_url     = s3_client.upload(ContentFile(decoded_image, fileName))
                     replaced_content = replaced_content.replace(encoded_str[0], image_url)
-                    print(replaced_content)
+                    # print(replaced_content)
                     
                     content = replaced_content.replace('data:image/jpeg;base64,', '')
             
