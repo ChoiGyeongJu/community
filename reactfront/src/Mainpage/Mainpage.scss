@@ -1,61 +1,142 @@
-.main-page {
-    position: relative;
-    padding-top: 150px;
-    // width: 65%;
-    width: 1200px;
-    margin: 0 auto;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    place-items: center;
-    max-width: 1180px;
+@media only screen and (min-width: 1228px) {
+	.main-page {
+		position: relative;
+		padding-top: 150px;
+		width: 100%;
+		margin: 0 auto;
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		place-items: center;
+		max-width: 1180px;
 
-    .board {
-        // width: 95%;
-        width: 560px;
-        height: 410px;
-        overflow: hidden;
-        margin-bottom: 50px;
-        border-radius: 12px;
-        background-color: white;
+		.board {
+			// width: 95%;
+			width: 560px;
+			height: 410px;
+			overflow: hidden;
+			margin-bottom: 50px;
+			border-radius: 12px;
+			background-color: white;
 
-        .title {
-            cursor: pointer;
-            width: 90%;
-            margin-left: 4%;
-            margin-top: 25px;
-            font-size: 20px;
-            font-weight: 700;
-            padding-bottom: 10px;
-            border-bottom: 2.5px solid #cecece;
-        }
+			.title {
+				cursor: pointer;
+				width: 90%;
+				margin-left: 4%;
+				margin-top: 25px;
+				font-size: 20px;
+				font-weight: 700;
+				padding-bottom: 10px;
+				border-bottom: 2.5px solid #cecece;
+			}
 
-        .board-contents {
-            display: flex;
-            margin: 12px 0 16px 22px;
-            width: 100%;
-            position: relative;
-            word-break: break-all;
-            white-space: nowrap;
-        
-            .board-writer {
-                display: flex;
-                width: 10%;
-            }
+			.board-contents {
+				display: flex;
+				margin: 12px 0 16px 22px;
+				width: 100%;
+				position: relative;
+				word-break: break-all;
+				white-space: nowrap;
 
-            .board-title {
-                cursor: pointer;
-                width: 60%;
-                margin-left: 3%;
-                display: block;
-                overflow: hidden;
-                text-overflow: ellipsis;
-            }
+				.board-writer {
+					display: block;
+					width: 13%;
+					overflow: hidden;
+					text-overflow: ellipsis;
+				}
 
-            .board-date {
-                display: flex;
-                margin-left: 2%;
-                width: 20%;
-            }
-        }   
-    }
+				.board-title {
+					cursor: pointer;
+					width: 60%;
+					margin-left: 2%;
+					display: block;
+					overflow: hidden;
+					text-overflow: ellipsis;
+				}
+
+				.board-date {
+					display: flex;
+					margin-left: 2%;
+					width: 20%;
+				}
+			}
+		}
+	}
+}
+
+@media only screen and (max-width: 1228px) {
+	.main-page {
+		position: relative;
+		padding-top: 150px;
+		width: auto;
+		margin: 0 auto;
+		display: grid;
+		grid-template-columns: 1fr;
+		place-items: center;
+
+		.board {
+			font-size: 1vw;
+			width: 85vw;
+			max-width: 500px;
+			height: 410px;
+			overflow: hidden;
+			margin-bottom: 50px;
+			border-radius: 12px;
+			background-color: white;
+
+			.title {
+				cursor: pointer;
+				width: 90%;
+				margin-left: 4%;
+				margin-top: 25px;
+				font-weight: 700;
+				padding-bottom: 10px;
+				border-bottom: 2.5px solid #cecece;
+			}
+
+			.board-contents {
+				display: flex;
+				margin: 12px 0 16px 2vw;
+				width: 100%;
+				position: relative;
+				word-break: break-all;
+				white-space: nowrap;
+
+				@media only screen and (max-width: 420px) {
+					.board-writer {
+						display: none;
+					}
+					.board-title {
+						cursor: pointer;
+						width: 66%;
+						margin-left: 2vw;
+						display: block;
+						overflow: hidden;
+						text-overflow: ellipsis;
+					}
+				}
+				@media only screen and (min-width: 420px) {
+					.board-writer {
+						display: block;
+						width: 13%;
+						overflow: hidden;
+						text-overflow: ellipsis;
+					}
+					.board-title {
+						cursor: pointer;
+						width: 62%;
+						margin-left: 1vw;
+						display: block;
+						overflow: hidden;
+						text-overflow: ellipsis;
+					}
+				}
+
+				.board-date {
+					display: flex;
+					margin-left: 2vw;
+					width: 20%;
+				}
+			}
+		}
+	}
 }

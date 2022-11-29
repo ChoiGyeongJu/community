@@ -1,64 +1,127 @@
 .Freepagination {
-	margin-top: 80px;
+	margin-top: 70px;
 	display: flex;
 	justify-content: center;
 
-	.prevButtonBox {
-		.prevButton {
-			border: none;
-			margin-top: 5.5px;
-			transform: rotate(180deg);
-			margin-right: 20px;
-			cursor: pointer;
+	@media only screen and (min-width: 650px) {
+		.pageNumberBox {
+			display: flex;
+			justify-content: center;
+			width: auto;
+
+			.button {
+				width: 24px;
+				height: 26px;
+				margin: 0px 20px 0px 20px;
+
+				font-family: Roboto;
+				font-style: normal;
+				font-weight: 400;
+				font-size: 16px;
+				line-height: 24px;
+				text-align: center;
+				color: rgba(0, 0, 0, 0.85);
+				background-color: #ffffff;
+				border: none;
+				cursor: pointer;
+			}
+
+			.currentbutton {
+				width: 24px;
+				height: 26px;
+				margin: 0px 20px 0px 20px;
+
+				background-color: #2ea1f4;
+				font-family: Roboto;
+				font-style: normal;
+				font-weight: 400;
+				font-size: 16px;
+				line-height: 24px;
+				text-align: center;
+				color: #ffffff;
+				cursor: pointer;
+				border-radius: 2px;
+			}
+		}
+
+		.prevButtonBox {
+			.prevButton {
+				border: none;
+				margin-top: 5.5px;
+				transform: rotate(180deg);
+				margin-right: 20px;
+				cursor: pointer;
+			}
+		}
+
+		.nextButtonBox {
+			.nextButton {
+				margin-top: 5.5px;
+				margin-left: 20px;
+				border: none;
+				cursor: pointer;
+			}
 		}
 	}
 
-	.pageNumberBox {
-		display: flex;
-		justify-content: center;
-		width: auto;
+	@media only screen and (max-width: 650px) {
+		.pageNumberBox {
+			display: flex;
+			justify-content: center;
+			width: auto;
 
-		.button {
-			width: 24px;
-			height: 26px;
-			margin: 0px 20px 0px 20px;
+			.button {
+				width: 20px;
+				height: 22px;
+				margin: 0px 1vw 0px 1vw;
 
-			font-family: Roboto;
-			font-style: normal;
-			font-weight: 400;
-			font-size: 16px;
-			line-height: 24px;
-			text-align: center;
-			color: rgba(0, 0, 0, 0.85);
-			background-color: #ffffff;
-			border: none;
-			cursor: pointer;
+				font-family: Roboto;
+				font-style: normal;
+				font-weight: 400;
+				font-size: 12px;
+				line-height: 24px;
+				text-align: center;
+				color: rgba(0, 0, 0, 0.85);
+				background-color: #ffffff;
+				border: none;
+				cursor: pointer;
+			}
+
+			.currentbutton {
+				width: 20px;
+				height: 22px;
+				margin: 0px 1vw 0px 1vw;
+
+				background-color: #2ea1f4;
+				font-family: Roboto;
+				font-style: normal;
+				font-weight: 400;
+				font-size: 12px;
+				line-height: 24px;
+				text-align: center;
+				color: #ffffff;
+				cursor: pointer;
+				border-radius: 2px;
+			}
 		}
 
-		.currentbutton {
-			width: 24px;
-			height: 26px;
-			margin: 0px 20px 0px 20px;
-
-			background-color: #2ea1f4;
-			font-family: Roboto;
-			font-style: normal;
-			font-weight: 400;
-			font-size: 16px;
-			line-height: 24px;
-			text-align: center;
-			color: #ffffff;
-			cursor: pointer;
-			border-radius: 2px;
+		.prevButtonBox {
+			.prevButton {
+				border: none;
+				margin-top: 5.5px;
+				transform: rotate(180deg);
+				margin-right: 5vw;
+				cursor: pointer;
+			}
 		}
-	}
 
-	.nextButtonBox {
-		.nextButton {
-			margin-top: 5.5px;
-			margin-left: 20px;
-			border: none;
-			cursor: pointer;
+		.nextButtonBox {
+			.nextButton {
+				margin-top: 5.5px;
+				margin-left: 5vw;
+				border: none;
+				cursor: pointer;
+			}
 		}
 	}
 }
