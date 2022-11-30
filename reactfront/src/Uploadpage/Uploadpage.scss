@@ -1,6 +1,6 @@
 .upload {
 	padding-top: 150px;
-	width: 65%;
+	width: 90%;
 	margin: 0 auto;
 	max-width: 1180px;
 	position: relative;
@@ -18,32 +18,32 @@
 			display: flex;
 			width: 96%;
 			margin: 10px 0 30px 1%;
-			font-size: 24px;
+			font-size: min(24px, 4.5vw);
 			font-weight: 700;
-			padding: 28px 0 16px 20px;
-			border-bottom: 3px solid black;
+			padding: min(28px, 4vw) 0 min(16px, 3vw) 1%;
+			border-bottom: min(2px, 1vw) solid black;
 		}
 
 		.content-container {
 			width: 96%;
 			margin: 10px 0 30px 2%;
 			height: auto;
-			min-height: 900px;
 			max-height: 1200px;
 
 			.select-box {
-				width: 30%;
-				font-size: 16px;
+				width: auto;
+				font-size: min(16px, 2vw);
 				cursor: pointer;
-				margin-bottom: 20px;
+				margin-bottom: min(28px, 6vw);
 			}
 
 			input {
-				width: 98.5%;
-				height: 42px;
+				width: 98%;
+				height: min(42px, 8vw);
 				margin-bottom: 25px;
-				padding-left: 8px;
-				font-size: 15px;
+				// margin-left: 2%;
+				padding-left: min(1%, 1vw);
+				font-size: min(15px, 3vw);
 			}
 		}
 
@@ -54,24 +54,28 @@
 			.cancel-button {
 				margin: -10px 10px 45px 10px;
 				cursor: pointer;
-				width: 7%;
+				width: auto;
+				padding: min(6px, 1vw) min(6px, 3vw);
                 display: flex;
                 justify-content: center;
                 align-items: center;
 				height: 30px;
 				border: 1px solid #ddd;
+				font-size: min(16px, 3vw);
 			}
 			.upload-button {
 				margin: -10px 10px 45px 10px;
 				cursor: pointer;
-				width: 7%;
-				height: 30px;
+				width: auto;
+				height: auto;
+				padding: min(6px, 1vw) min(6px, 3vw);
 				border: 1px solid #ddd;
 				background-color: #034bda;
 				color: #fff;
                 display: flex;
                 justify-content: center;
                 align-items: center;
+				font-size: min(16px, 3vw);
 			}
 		}
 	}

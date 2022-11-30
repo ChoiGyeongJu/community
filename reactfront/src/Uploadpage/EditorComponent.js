@@ -14,11 +14,11 @@ class EditorComponent extends Component {
 		toolbar: [
 			//[{ 'font': [] }],
 			[{ header: [1, 2, false] }],
-			['bold', 'italic', 'underline', 'strike', 'blockquote'],
-			[{ list: 'ordered' }, { list: 'bullet' }, { indent: '-1' }, { indent: '+1' }],
-			['link', 'image'],
+			['bold', 'italic', 'underline', 'strike'],
+			// [{ list: 'ordered' }, { list: 'bullet' }, { indent: '-1' }, { indent: '+1' }],
+			['image'],
 			[{ align: [] }, { color: [] }, { background: [] }], // dropdown with defaults from theme
-			['clean'],
+			// ['clean'],
 		],
 		ImageResize: {
 			parchment: Quill.import('parchment'),
@@ -46,9 +46,9 @@ class EditorComponent extends Component {
 	render() {
 		const { value, onChange } = this.props;
 		return (
-			<div style={{ height: '650px' }}>
+			<div style={{ height: 'min(850px, 90vw)', minHeight: '400px' }}>
 				<ReactQuill
-					style={{ height: '700px' }}
+					style={{ height: 'min(700px, 60vw)', minHeight: '300px' }}
 					theme="snow"
 					modules={this.modules}
 					formats={this.formats}

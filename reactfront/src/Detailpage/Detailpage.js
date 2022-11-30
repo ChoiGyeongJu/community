@@ -72,26 +72,55 @@ const Detailpage = () => {
 		}
 	}, []);
 
+	const [resize, setResize] = useState(window.innerWidth);
+	const handleResize = () => {
+		setResize(window.innerWidth);
+	};
+
+	useEffect(() => {
+		window.addEventListener('resize', handleResize);
+		return () => {
+			window.removeEventListener('resize', handleResize);
+		};
+	}, []);
+
+	useEffect(() => {
+		let reviewComp = document.getElementById('reviewNum');
+		let displayComp = document.getElementById('contents-info');
+		if (resize < 500) {
+			reviewComp.style.display = 'none';
+		} else {
+			reviewComp.style.display = '';
+		}
+		if (resize < 300) {
+			displayComp.style.display = 'block';
+		} else {
+			displayComp.style.display = 'flex';
+		}
+	}, [resize]);
+
 	return (
 		<div className="detail-page">
 			<div className="board">
 				<div className="board-title">{Detailcontents.category}</div>
 				<div className="contents-title">{Detailcontents.title}</div>
-				<div className="contents-info">
+				<div id="contents-info" className="contents-info">
 					<div className="writer">
-						<div style={{ fontWeight: '600', marginRight: '8px' }}>작성자</div>
+						<div style={{ fontWeight: '600', marginRight: 'min(2vw, 6px)' }}>작성자</div>
 						{Detailcontents.nickname}
 					</div>
-					<div className="writer" style={{ width: '15%' }}>
-						<div style={{ fontWeight: '600', marginRight: '8px' }}>등록일</div>
+					<div className="date">
+						<div id="date" style={{ fontWeight: '600', marginRight: 'min(2vw, 8px)' }}>
+							등록일
+						</div>
 						{Detailcontents.date}
 					</div>
-					<div className="writer" style={{ width: '10%' }}>
-						<div style={{ fontWeight: '600', marginRight: '8px' }}>조회수</div>
+					<div id="views" className="views">
+						<div style={{ fontWeight: '600', marginRight: 'min(2vw, 8px)' }}>조회수</div>
 						{Detailcontents.views}
 					</div>
-					<div className="writer" style={{ width: '8%' }}>
-						<div style={{ fontWeight: '600', marginRight: '8px' }}>댓글</div>
+					<div id="reviewNum" className="reviewNum">
+						<div style={{ fontWeight: '600', marginRight: 'min(2vw, 8px)' }}>댓글</div>
 						{Reviewcontents.length}
 					</div>
 				</div>

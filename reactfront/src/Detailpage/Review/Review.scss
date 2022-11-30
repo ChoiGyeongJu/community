@@ -1,177 +1,364 @@
-.review-box {
-	padding-bottom: 30px;
+@media only screen and (min-width: 1220px) {
+	.review-box {
+		padding-bottom: 30px;
 
-	.create-review {
-		background: #f7f8f9;
-		width: 96%;
-		margin-left: 2%;
-		padding-bottom: 40px;
-
-		textarea {
-			height: 140px;
-			margin: 20px 20px 10px 18px;
+		.create-review {
+			background: #f7f8f9;
 			width: 96%;
-			padding: 10px 0 0 10px;
-			resize: none;
-			letter-spacing: 1.5px;
-			background: white;
+			margin-left: 2%;
+			padding-bottom: 40px;
+
+			textarea {
+				height: 140px;
+				margin: 20px 20px 10px 18px;
+				width: 96%;
+				padding: 10px 0 0 10px;
+				resize: none;
+				letter-spacing: 1.5px;
+				background: white;
+			}
+
+			.upload-button {
+				text-align: center;
+				float: right;
+				width: 60px;
+				height: 25px;
+				background: white;
+				border-radius: 2px;
+				cursor: pointer;
+				border: 1px solid black;
+				font-size: 14px;
+				margin-right: 20px;
+			}
 		}
 
-		.upload-button {
-			text-align: center;
-			float: right;
-			width: 60px;
-			height: 25px;
-			background: white;
-			border-radius: 2px;
-			cursor: pointer;
-			border: 1px solid black;
-			font-size: 14px;
-			margin-right: 20px;
+		.review-page {
+			background: #f7f8f9;
+			height: auto;
+			border-top: 1px solid #ddd;
+			width: 96%;
+			margin-left: 2%;
+
+			textarea {
+				height: 100px;
+				margin: 0 20px 10px 18px;
+				width: 96%;
+				padding: 10px 0 0 10px;
+				resize: none;
+				letter-spacing: 1.5px;
+				background: white;
+			}
+
+			.upload-button {
+				text-align: center;
+				float: right;
+				width: 60px;
+				height: 25px;
+				background: white;
+				border-radius: 2px;
+				cursor: pointer;
+				border: 1px solid black;
+				font-size: 14px;
+				margin-right: 20px;
+			}
+
+			p {
+				text-align: center;
+				padding: 35px 0 30px 0;
+			}
+
+			.review-info {
+				margin: 15px 0 0 2%;
+				width: 96%;
+				display: flex;
+
+				.writer {
+					width: auto;
+					font-size: 14px;
+					margin-right: 15px;
+				}
+				.date {
+					font-size: 14px;
+					color: #aaa;
+				}
+			}
+
+			.update {
+				cursor: pointer;
+				position: absolute;
+				margin: -40px 0 0 92%;
+				float: right;
+				width: auto;
+				text-align: right;
+				font-size: 32px;
+			}
+			.show-toggle {
+				margin: 5px 11px 0 0;
+				background: white;
+				width: 50px;
+				height: auto;
+				float: right;
+				border: 1px solid #aaa;
+				border-radius: 8px;
+				padding-bottom: 7px;
+
+				.text {
+					font-size: 13px;
+					text-align: center;
+					margin-top: 6px;
+					cursor: pointer;
+				}
+			}
+
+			.hide-toggle {
+				display: none;
+			}
+
+			.review-content {
+				margin: 15px 0 0 2%;
+
+				.content {
+					font-size: 14px;
+					white-space: pre-wrap;
+				}
+			}
+
+			.write-button {
+				cursor: pointer;
+				font-size: 13px;
+				font-weight: 400;
+				color: #aaa;
+				margin: 15px 0 0 2%;
+				width: 60px;
+				padding-bottom: 20px;
+			}
+		}
+
+		.parent-review {
+			// 대댓글 css
+			background: #f7f8f9;
+			height: auto;
+			border-top: 1px solid #ddd;
+			width: 100%;
+			padding: 10px 0 10px 0;
+
+			.reply-image {
+				position: absolute;
+				width: 28px;
+				height: 30px;
+				margin: 20px 0 0 30px;
+				transform: rotate(180deg);
+			}
+
+			.parent-info {
+				margin: 15px 0 0 7%;
+				width: 96%;
+				display: flex;
+
+				.writer {
+					width: auto;
+					font-size: 14px;
+					margin-right: 15px;
+				}
+				.date {
+					font-size: 14px;
+					color: #aaa;
+				}
+			}
+			.parent-content {
+				margin: 15px 0 0 7%;
+
+				.content {
+					font-size: 14px;
+					word-break: normal;
+					word-wrap: break-word;
+				}
+			}
 		}
 	}
+}
 
-	.review-page {
-		background: #f7f8f9;
-		height: auto;
-		border-top: 1px solid #ddd;
-		width: 96%;
-		margin-left: 2%;
-
-        textarea {
-			height: 100px;
-			margin: 0 20px 10px 18px;
+@media only screen and (max-width: 1220px) {
+	.review-box {
+		padding-bottom: 30px;
+		width: 90vw;
+		.create-review {
+			background: #f7f8f9;
 			width: 96%;
-			padding: 10px 0 0 10px;
-			resize: none;
-			letter-spacing: 1.5px;
-			background: white;
-		}
+			margin-left: 2%;
+			padding-bottom: 40px;
 
-        .upload-button {
-			text-align: center;
-			float: right;
-			width: 60px;
-			height: 25px;
-			background: white;
-			border-radius: 2px;
-			cursor: pointer;
-			border: 1px solid black;
-			font-size: 14px;
-			margin-right: 20px;
-		}
-
-		p {
-			text-align: center;
-			padding: 35px 0 30px 0;
-		}
-
-		.review-info {
-			margin: 15px 0 0 2%;
-			width: 96%;
-			display: flex;
-
-			.writer {
-                width: auto;
-				font-size: 14px;
-				margin-right: 15px;
+			textarea {
+				height: auto;
+				min-height: min(140px, 20vw);
+				margin: 20px 0 10px 1vw;
+				width: 96%;
+				padding: 10px 0 0 1vw;
+				resize: none;
+				font-size: min(2vw, 16px);
+				letter-spacing: 1.5px;
+				background: white;
 			}
-			.date {
-				font-size: 14px;
+
+			.upload-button {
+				text-align: center;
+				float: right;
+				width: auto;
+				height: auto;
+				background: white;
+				border-radius: 2px;
+				cursor: pointer;
+				border: 1px solid black;
+				font-size: min(14px, 2vw);
+				margin-right: min(20px, 4vw);
+			}
+		}
+
+		.review-page {
+			background: #f7f8f9;
+			height: auto;
+			border-top: 1px solid #ddd;
+			width: 96%;
+			margin-left: 2%;
+
+			textarea {
+				height: auto;
+				font-size: min(2vw, 16px);
+				min-height: min(100px, 18vw);
+				margin: 0 20px 10px 1vw;
+				width: 96%;
+				padding: 10px 0 0 1vw;
+				resize: none;
+				letter-spacing: 1.5px;
+				background: white;
+			}
+
+			.upload-button {
+				text-align: center;
+				float: right;
+				width: auto;
+				height: auto;
+				background: white;
+				border-radius: 2px;
+				cursor: pointer;
+				border: 1px solid black;
+				font-size: min(14px, 2vw);
+				margin-right: min(20px, 3vw);
+			}
+
+			p {
+				text-align: center;
+				padding: 35px 0 30px 0;
+				font-size: min(14px, 2vw);
+			}
+
+			.review-info {
+				margin: 15px 0 0 2%;
+				width: auto;
+				display: flex;
+
+				.writer {
+					width: auto;
+					font-size: min(14px, 2vw);
+					margin-right: min(15px, 2vw);
+				}
+				.date {
+					font-size: min(14px, 2vw);
+					color: #aaa;
+				}
+			}
+
+			.update {
+				cursor: pointer;
+				position: relative;
+				margin: max(-42px, -20vw) 2vw 0 auto;
+				font-size: min(32px, 14vw);
+				float: right;
+			}
+			.show-toggle {
+				margin: 5px 11px 0 0;
+				background: white;
+				width: 50px;
+				height: auto;
+				float: right;
+				border: 1px solid #aaa;
+				border-radius: 8px;
+				padding-bottom: 7px;
+
+				.text {
+					font-size: 13px;
+					text-align: center;
+					margin-top: 6px;
+					cursor: pointer;
+				}
+			}
+
+			.hide-toggle {
+				display: none;
+			}
+
+			.review-content {
+				margin: min(15px, 3vw) 0 0 2%;
+				
+				.content {
+					font-size: min(14px, 2vw);
+					white-space: pre-wrap;
+				}
+			}
+
+			.write-button {
+				cursor: pointer;
+				font-size: min(13px, 2vw);
+				font-weight: 400;
 				color: #aaa;
+				margin: 15px 0 0 2%;
+				width: auto;
+				max-width: 65px;
+				padding-bottom: 20px;
 			}
 		}
 
-        .update {
-            cursor: pointer;
-            position: absolute;
-            margin: -40px 0 0 92%;
-            float: right;
-            width: auto;
-            text-align: right;
-            font-size: 32px;
-        }
-        .show-toggle {
-            margin: 5px 11px 0 0;
-            background: white;
-            width: 50px;
-            height: auto;
-            float: right;
-            border: 1px solid #aaa;
-            border-radius: 8px;
-			padding-bottom: 7px;
-            
-            .text {
-                font-size: 13px;
-                text-align: center;
-                margin-top: 6px;
-                cursor: pointer;
-            }
-        }
+		.parent-review {
+			// 대댓글 css
+			background: #f7f8f9;
+			height: auto;
+			border-top: 1px solid #ddd;
+			width: 100%;
+			padding: 10px 0 10px 0;
+			word-break: normal;
+			word-wrap: break-word;
 
-        .hide-toggle {
-            display: none;
-        }
-
-		.review-content {
-			margin: 15px 0 0 2%;
-
-			.content {
-				font-size: 14px;
-				word-break: normal;
-				word-wrap: break-word;
+			.reply-image {
+				position: absolute;
+				width: min(22px, 6vw);
+				height: min(24px, 7vw);
+				margin: 3% 0 0 3%;
+				transform: rotate(180deg);
 			}
-		}
 
-		.write-button {
-			cursor: pointer;
-			font-size: 13px;
-			font-weight: 400;
-			color: #aaa;
-			margin: 15px 0 0 2%;
-            width: 60px;
-            padding-bottom: 20px;
+			.parent-info {
+				margin: min(8px, 4vw) 0 0 min(10.5%, 16vw);
+				width: 96%;
+				display: flex;
+
+				.writer {
+					width: auto;
+					font-size: min(14px, 2vw);
+					margin-right: 15px;
+				}
+				.date {
+					font-size: min(14px, 2vw);
+					color: #aaa;
+				}
+			}
+			.parent-content {
+				margin: min(10px, 6vw) 0 0 min(10.5%, 15vw);
+
+				.content {
+					font-size: min(14px, 2vw);
+					white-space: pre-wrap;
+				}
+			}
 		}
 	}
-
-    .parent-review { // 대댓글 css
-		background: #f7f8f9;
-		height: auto;
-		border-top: 1px solid #ddd;
-		width: 100%;
-        padding: 10px 0 10px 0;
-
-        .reply-image {
-            position: absolute;
-            width: 28px;
-            height: 30px;
-            margin: 20px 0 0 30px;
-            transform: rotate(180deg);
-        }
-
-        .parent-info {
-			margin: 15px 0 0 7%;
-			width: 96%;
-			display: flex;
-
-			.writer {
-                width: auto;
-				font-size: 14px;
-				margin-right: 15px;
-			}
-			.date {
-				font-size: 14px;
-				color: #aaa;
-			}
-		}
-        .parent-content {
-			margin: 15px 0 0 7%;
-
-			.content {
-				font-size: 14px;
-				word-break: normal;
-				word-wrap: break-word;
-			}
-		}
-    }
 }

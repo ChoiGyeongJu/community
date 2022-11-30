@@ -39,7 +39,7 @@
 			}
 
 			.write-button {
-				font-size: 12px;
+				font-size: min(12px, 2vw);
 				cursor: pointer;
 				width: auto;
 				border: 1px solid #d0d0d0;
@@ -48,7 +48,7 @@
 				align-items: center;
 				justify-content: center;
 				padding: 3px 12px;
-				margin: 8px 10vmin 0 0;
+				margin: 10px 10vmin 0 0;
 			}
 		}
 

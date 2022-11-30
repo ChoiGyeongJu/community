@@ -1,88 +1,220 @@
-.detail-page {
-    position: relative;
-    padding-top: 150px;
-    width: 1200px;
-    margin: 0 auto;
-    place-items: center;
-    max-width: 1180px;
-    
-	.board {
-		border-radius: 12px;
-		background-color: white;
-		width: 100%;
-		height: auto;
-		min-height: 900px;
-		// max-height: 1200px;
-		margin-bottom: 50px;
+@media only screen and (min-width: 1220px) {
+	.detail-page {
+		position: relative;
+		padding-top: 150px;
+		width: 1200px;
+		margin: 0 auto;
+		place-items: center;
+		max-width: 1180px;
 
-        .board-title {
-			cursor: pointer;
-			width: 96%;
-			margin-left: 1%;
-			margin-top: 10px;
-			font-size: 22px;
-			font-weight: 700;
-			padding: 28px 0 16px 20px;
-			border-bottom: 2px solid #555;
+		.board {
+			border-radius: 12px;
+			background-color: white;
+			width: 100%;
+			height: auto;
+			min-height: 900px;
+			// max-height: 1200px;
+			margin-bottom: 50px;
+
+			.board-title {
+				cursor: pointer;
+				width: 96%;
+				margin-left: 1%;
+				margin-top: 10px;
+				font-size: 22px;
+				font-weight: 700;
+				padding: 28px 0 16px 20px;
+				border-bottom: 2px solid #555;
+			}
+
+			.contents-title {
+				width: 94%;
+				margin-left: 1%;
+				font-size: 15px;
+				font-weight: 600;
+				height: 48px;
+				border-bottom: 1px solid #ddd;
+				padding: 0 20px;
+				display: flex;
+				align-items: center;
+			}
+
+			.contents-info {
+				width: 94%;
+				margin-left: 1%;
+				font-size: 13px;
+				height: 42px;
+				border-bottom: 1px solid #ddd;
+				padding: 0 20px;
+				display: flex;
+				align-items: center;
+				color: #111;
+
+				.writer {
+					display: flex;
+					width: 70%;
+					font-size: min(1vw, 13px);
+				}
+				.date {
+					display: flex;
+					width: 15%;
+					font-size: min(1vw, 13px);
+				}
+				.views {
+					display: flex;
+					width: 10%;
+					font-size: min(1vw, 13px);
+				}
+				.reviewNum {
+					display: flex;
+					width: 8%;
+					font-size: min(1vw, 13px);
+				}
+			}
+
+			.contents-box {
+				width: 96%;
+				margin: 25px 0 100px 3%;
+				font-size: 15px;
+				padding-bottom: 150px;
+			}
+
+			.review {
+				width: 95%;
+				border-bottom: 1px solid #ddd;
+				padding: 0 0 10px 1%;
+				font-size: 16px;
+				font-weight: 800;
+				margin: 0 0 15px 2%;
+
+				.list-button {
+					text-align: center;
+					font-weight: 400;
+					float: right;
+					width: 60px;
+					height: 22px;
+					border-radius: 2px;
+					cursor: pointer;
+					border: 1px solid black;
+					font-size: 14px;
+					margin: 0 25px 15px 0;
+				}
+			}
 		}
+	}
+}
 
-        .contents-title {
-            width: 94%;
-            margin-left: 1%;
-            font-size: 15px;
-            font-weight: 600;
-            height: 48px;
-            border-bottom: 1px solid #ddd;
-            padding: 0 20px;
-            display: flex;
-            align-items: center;
-        }
+@media only screen and (max-width: 1220px) {
+	.detail-page {
+		position: relative;
+		padding-top: 110px;
+		width: 90vw;
+		margin: 0 auto;
+		place-items: center;
 
-        .contents-info {
-            width: 94%;
-            margin-left: 1%;
-            font-size: 13px;
-            height: 42px;
-            border-bottom: 1px solid #ddd;
-            padding: 0 20px;
-            display: flex;
-            align-items: center;
+		.board {
+			border-radius: 12px;
+			background-color: white;
+			width: 100%;
+			height: auto;
+			min-height: 900px;
+			// max-height: 1200px;
+			margin-bottom: 50px;
 
-            .writer {
-                display: flex;
-                width: 70%;
-                font-size: 13px;
-                color: #111;
+			.board-title {
+				cursor: pointer;
+				width: 96%;
+				margin-left: 1%;
+				margin-top: 10px;
+				font-size: 14px;
+				font-weight: 700;
+				padding: 20px 0 12px 2vw;
+				border-bottom: 2px solid #555;
+			}
+
+			.contents-title {
+				width: 94%;
+				margin-left: 1%;
+				font-size: min(2.5vw, 14px);
+				font-weight: 600;
+				height: auto;
+				min-height: 48px;
+				border-bottom: 1px solid #ddd;
+				padding: 0 2vw;
+				display: flex;
+				align-items: center;
+			}
+
+			.contents-info {
+				width: 94%;
+				margin-left: 1%;
+				font-size: 13px;
+				height: auto;
+				min-height: 42px;
+				border-bottom: 1px solid #ddd;
+				padding: 0 min(2vw, 20px);
+				display: flex;
+				align-items: center;
+				color: #111;
+
+				.writer {
+					display: flex;
+					width: auto;
+					margin-right: auto;
+					font-size: min(1vw, 13px);
+				}
+
+				.date {
+					display: flex;
+					width: auto;
+					margin-right: min(1vw, 8px);
+					font-size: min(1vw, 13px);
+				}
+				.views {
+					display: flex;
+					width: auto;
+					margin-right: min(1vw, 8px);
+					font-size: min(1vw, 13px);
+				}
+				.reviewNum {
+					display: flex;
+					width: auto;
+					font-size: min(1vw, 13px);
+				}
+			}
+
+			.contents-box {
+				width: 96%;
+				margin: 25px 0 100px 3%;
+				font-size: min(2vw, 15px);
+				padding-bottom: min(150px, 10vw);
+			}
+
+			.review {
+				width: 95%;
+				border-bottom: 1px solid #ddd;
+				padding: 0 0 min(20px, 6vw) 1%;
+				font-size: min(2.5vw, 16px);
+				font-weight: 800;
+				margin: 0 0 min(15px, 4vw) 2%;
+
+				.list-button {
+					text-align: center;
+					font-weight: 400;
+					float: right;
+                    width: auto;
+                    padding: min(1vw, 4px) min(3vw, 18px);
+					border-radius: 2px;
+					cursor: pointer;
+					border: 1px solid black;
+					font-size: min(14px, 2vw);
+					margin: 0 min(25px, 3vw) min(25px, 3vw) 0;
+				}
+			}
+
+            img {
+                max-width: -webkit-fill-available;
             }
-        }
-
-        .contents-box {
-            width: 96%;
-            margin: 25px 0 100px 3%;
-            font-size: 15px;
-            padding-bottom: 150px;
-        }
-
-        .review {
-            width: 95%;
-            border-bottom: 1px solid #ddd;
-            padding: 0 0 10px 1%;
-            font-size: 16px;
-            font-weight: 800;
-            margin: 0 0 15px 2%;
-        
-            .list-button {
-                text-align: center;
-                font-weight: 400;
-                float: right;
-                width: 60px;
-                height: 22px;
-                border-radius: 2px;
-                cursor: pointer;
-                border: 1px solid black;
-                font-size: 14px;
-                margin: 0 25px 15px 0;
-            }
-        }
-    }
+		}
+	}
 }
