@@ -1,7 +1,8 @@
 import React from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
-import Navbar from './Navbar/Navbar.js';
+// import Navbar from './Navbar/Navbar.js';
+import NavbarComponent from './Navbar/Navbar.js';
 import Mainpage from './Mainpage/Mainpage.js';
 import Loginpage from './Loginpage/Loginpage.js';
 import Freeboard from './Freeboard/Freeboard.js';
@@ -18,7 +19,7 @@ import Footer from './Footer/Footer.js';
 function Router() {
 	return (
 		<BrowserRouter>
-			<Navbar />
+			<NavbarComponent />
 			<Routes>
 				<Route path="/" element={<Mainpage />} />
 				<Route path="/login" element={<Loginpage />} />

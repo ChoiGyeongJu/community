@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-no-useless-fragment */
 /* eslint-disable jsx-a11y/alt-text */
 import './Navbar.scss';
 import logo from '../images/logo.png';
@@ -8,10 +9,22 @@ import { useNavigate } from 'react-router-dom';
 import { ScrollTop } from '../Hooks/Hooks';
 import url from '../FetchURL/URL';
 
-const Navbar = () => {
+import 'bootstrap/dist/css/bootstrap.css';
+// import Container from 'react-bootstrap/Container';
+// import Nav from 'react-bootstrap/Nav';
+// import Navbar from 'react-bootstrap/Navbar';
+// import NavDropdown from 'react-bootstrap/NavDropdown';
+import Button from 'react-bootstrap/Button';
+import Container from 'react-bootstrap/Container';
+import Form from 'react-bootstrap/Form';
+import Nav from 'react-bootstrap/Nav';
+import Navbar from 'react-bootstrap/Navbar';
+import NavDropdown from 'react-bootstrap/NavDropdown';
+import Offcanvas from 'react-bootstrap/Offcanvas';
+
+const NavbarComponent = () => {
 	const navigate = useNavigate();
 	const [UserLog, setUserLog] = useState(false);
-	const [Toggle, setToggle] = useState(false);
 
 	useEffect(() => {
 		if (localStorage.getItem('token')) {
@@ -21,117 +34,64 @@ const Navbar = () => {
 		}
 	}, [localStorage.getItem('token')]);
 
-	const ClickLog = () => {
-		setToggle(!Toggle);
-		if (UserLog) {
-		} else {
-			ScrollTop();
-			navigate('/login');
-		}
-	};
-
 	const requestLogOut = () => {
 		localStorage.clear();
 		alert('로그아웃 되었습니다.');
 		window.location.replace('/');
 	};
 
-	const el = useRef();
-	const handleToggle = e => {
-		if (Toggle && (!el.current || !el.current.contains(e.target))) {
-			setToggle(false);
-		}
-	};
-	useEffect(() => {
-		document.addEventListener('click', handleToggle);
-		return () => {
-			document.removeEventListener('click', handleToggle);
-		};
-	});
+	const [expand, setExpand] = useState('sm');
 
 	return (
-		<div className="navbar">
-			<div className="nav-contents">
-				<img
-					className="logo"
-					src={logo}
-					onClick={() => {
-						ScrollTop();
-						navigate('/');
-					}}
-				/>
-				<div className="menu-wrap">
-					<div
-						className="menu"
-						onClick={() => {
-							ScrollTop();
-							navigate('/Board1');
-						}}
+		<>
+			<Navbar
+				key={expand}
+				bg="light"
+				expand={expand}
+				className="mb-3"
+				style={{ position: 'fixed', zIndex: '99' }}
+			>
+				<Container fluid style={{ width: 'min(98%, 1200px)' }}>
+					<Navbar.Brand href="/">Community</Navbar.Brand>
+					<Navbar.Toggle aria-controls={`offcanvasNavbar-expand-${expand}`} />
+					<Navbar.Offcanvas
+						id={`offcanvasNavbar-expand-${expand}`}
+						aria-labelledby={`offcanvasNavbarLabel-expand-${expand}`}
+						placement="end"
 					>
-						자유게시판
-					</div>
-				</div>
-				<div className="menu-wrap">
-					<div
-						className="menu"
-						onClick={() => {
-							ScrollTop();
-							navigate('/Board2');
-						}}
-					>
-						스포츠
-					</div>
-				</div>
-				<div className="menu-wrap">
-					<div
-						className="menu"
-						onClick={() => {
-							ScrollTop();
-							navigate('/Board3');
-						}}
-					>
-						주식/코인
-					</div>
-				</div>
-				<div className="menu-wrap">
-					<div
-						className="menu"
-						onClick={() => {
-							ScrollTop();
-							navigate('/Board4');
-						}}
-					>
-						게임
-					</div>
-				</div>
-				<img className="search-icon" src={search} />
-				<img className="login-icon" src={loginbtn} onClick={ClickLog} ref={el} />
-				{UserLog && Toggle ? (
-					<div className="toggle-menu">
-						<p
-							style={{ cursor: 'pointer' }}
-							onClick={() => {
-								setToggle(false);
-								ScrollTop();
-								navigate('/mypage');
-							}}
-						>
-							마이페이지
-						</p>
-						<p
-							style={{ cursor: 'pointer' }}
-							onClick={() => {
-								setToggle(false);
-								requestLogOut();
-							}}
-						>
-							로그아웃
-						</p>
-					</div>
-				) : null}
-			</div>
-		</div>
+						<Offcanvas.Header closeButton>
+							<Offcanvas.Title id={`offcanvasNavbarLabel-expand-${expand}`}>Menu</Offcanvas.Title>
+						</Offcanvas.Header>
+						<Offcanvas.Body>
+							<Nav className="justify-content-center flex-grow-1 pe-3">
+								<Nav.Link href="/Board1">자유게시판</Nav.Link>
+								<Nav.Link href="/Board2">스포츠</Nav.Link>
+								<Nav.Link href="/Board3">주식/코인</Nav.Link>
+								<Nav.Link href="/Board4" style={{ marginRight: 'auto' }}>
+									게임
+								</Nav.Link>
+								{UserLog ? (
+									<NavDropdown title="XXX님" id={`offcanvasNavbarDropdown-expand-${expand}`}>
+										<NavDropdown.Item href="/mypage">마이페이지</NavDropdown.Item>
+										<NavDropdown.Divider />
+										<NavDropdown.Item
+											onClick={() => {
+												requestLogOut();
+											}}
+										>
+											로그아웃
+										</NavDropdown.Item>
+									</NavDropdown>
+								) : (
+									<Nav.Link href="/login">로그인/회원가입</Nav.Link>
+								)}
+							</Nav>
+						</Offcanvas.Body>
+					</Navbar.Offcanvas>
+				</Container>
+			</Navbar>
+		</>
 	);
 };
 
-export default Navbar;
+export default NavbarComponent;
